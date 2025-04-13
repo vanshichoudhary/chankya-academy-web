@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Facilities from "./pages/Facilities";
-import CIAManagement from "./pages/CIAManagement";
+import CIAOfficial from "./pages/CIAOfficial";
 import UGIEP from "./pages/UGIEP";
 import Establishments from "./pages/Establishments";
 import Gallery from "./pages/Gallery";
@@ -27,7 +27,7 @@ const App = () => (
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="facilities" element={<Facilities />} />
-            <Route path="official-management" element={<CIAManagement />} />
+            <Route path="cia-official" element={<CIAOfficial />} />
             <Route path="ugiep" element={<UGIEP />} />
             <Route path="establishments" element={<Establishments />} />
             <Route path="gallery" element={<Gallery />} />
