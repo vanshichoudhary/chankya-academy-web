@@ -1,8 +1,9 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import PageHeader from "@/components/PageHeader";
 import SectionTitle from "@/components/SectionTitle";
+import Gallery from "@/components/Gallery";
 import { 
   Card, 
   CardContent, 
@@ -17,6 +18,13 @@ import {
   TabsList, 
   TabsTrigger 
 } from "@/components/ui/tabs";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { 
   BookOpen, 
   Beaker, 
@@ -28,10 +36,18 @@ import {
   Monitor, 
   Code, 
   ChevronRight, 
-  ExternalLink 
+  ExternalLink,
+  Route,
+  ArrowRight,
+  Check,
+  CircleCheck
 } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
 
 const UGIEP = () => {
+  const [activeStage, setActiveStage] = useState(1);
+  
   const stages = [
     {
       title: "Stage 1: Digital Transformation",
@@ -125,6 +141,39 @@ const UGIEP = () => {
     }
   ];
 
+  const galleryImages = [
+    {
+      src: "/placeholder.svg",
+      alt: "STEM Lab Setup",
+      caption: "STEM Laboratory Implementation"
+    },
+    {
+      src: "/placeholder.svg",
+      alt: "Robotics Workshop",
+      caption: "Students engaged in robotics workshop"
+    },
+    {
+      src: "/placeholder.svg",
+      alt: "AI Integration",
+      caption: "AI-powered learning systems in action"
+    },
+    {
+      src: "/placeholder.svg",
+      alt: "Digital Infrastructure",
+      caption: "Modern digital infrastructure setup"
+    },
+    {
+      src: "/placeholder.svg",
+      alt: "Uni-Talks Session",
+      caption: "Expert session during Uni-Talks program"
+    },
+    {
+      src: "/placeholder.svg",
+      alt: "Innovation Lab",
+      caption: "Students working in the innovation lab"
+    }
+  ];
+
   return (
     <div>
       <PageHeader 
@@ -177,43 +226,135 @@ const UGIEP = () => {
         </div>
       </section>
 
-      {/* Implementation Stages */}
+      {/* Journey & Roadmap */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <SectionTitle 
-            title="Implementation Stages" 
-            subtitle="A systematic approach to institutional transformation"
+            title="UGIEP Implementation Journey" 
+            subtitle="A strategic roadmap for institutional transformation"
             center
           />
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            {stages.map((stage, index) => (
-              <Card key={index} className="h-full">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-xl text-school-green">{stage.title}</CardTitle>
-                  <CardDescription>{stage.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {stage.items.map((item, itemIndex) => (
-                    <div key={itemIndex} className="flex">
-                      <div className="mr-4 mt-1">
-                        <item.icon className="h-6 w-6 text-school-gold" />
+          <div className="mt-12">
+            <div className="relative">
+              {/* Interactive Timeline */}
+              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-school-gold transform -translate-x-1/2 z-0"></div>
+              
+              <div className="space-y-24 relative z-10">
+                {stages.map((stage, index) => (
+                  <div key={index} className={`relative ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
+                    <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 items-center ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
+                      <div className={`${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
+                        <div className={`bg-white p-6 rounded-lg shadow-lg border-l-4 ${activeStage === index + 1 ? 'border-school-gold' : 'border-gray-200'}`}>
+                          <Badge variant={activeStage === index + 1 ? "default" : "outline"} className={`mb-3 ${activeStage === index + 1 ? 'bg-school-gold' : ''}`}>
+                            Stage {index + 1}
+                          </Badge>
+                          <h3 className="text-xl font-medium text-school-green mb-3">{stage.title.split(':')[1]}</h3>
+                          <p className="text-gray-600 mb-4">{stage.description}</p>
+                          <Button 
+                            variant={activeStage === index + 1 ? "default" : "outline"}
+                            className={activeStage === index + 1 ? "bg-school-gold hover:bg-school-brown text-white" : "text-gray-600"}
+                            onClick={() => setActiveStage(index + 1)}
+                          >
+                            {activeStage === index + 1 ? (
+                              <>Active Stage <CircleCheck size={16} className="ml-2" /></>
+                            ) : (
+                              <>View Details <ArrowRight size={16} className="ml-2" /></>
+                            )}
+                          </Button>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="font-medium">{item.title}</h4>
-                        <p className="text-sm text-gray-600">{item.description}</p>
+                      <div className={`hidden md:flex justify-center ${index % 2 === 0 ? 'md:order-2 md:justify-start' : 'md:order-1 md:justify-end'}`}>
+                        <div className={`w-24 h-24 rounded-full flex items-center justify-center z-10 ${activeStage === index + 1 ? 'bg-school-gold text-white' : 'bg-white text-school-green border border-school-gold'}`}>
+                          <Route size={32} />
+                        </div>
                       </div>
                     </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          {/* Stage Details */}
+          <div className="mt-16">
+            <Card className="border-school-gold">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-2xl text-school-green">{stages[activeStage-1].title}</CardTitle>
+                <CardDescription>{stages[activeStage-1].description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {stages[activeStage-1].items.map((item, index) => (
+                    <div key={index} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                      <div className="flex items-center mb-4">
+                        <div className="bg-school-beige p-3 rounded-full mr-4">
+                          <item.icon className="h-6 w-6 text-school-gold" />
+                        </div>
+                        <h4 className="text-lg font-medium text-school-green">{item.title}</h4>
+                      </div>
+                      <p className="text-gray-600">{item.description}</p>
+                    </div>
                   ))}
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Implementation Stages Carousel */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <SectionTitle 
+            title="Implementation Approach" 
+            subtitle="Explore our comprehensive transformation process"
+            center
+          />
+          
+          <div className="mt-12">
+            <Carousel className="max-w-5xl mx-auto">
+              <CarouselContent>
+                {stages.map((stage, index) => (
+                  <CarouselItem key={index}>
+                    <Card className="h-full">
+                      <CardHeader className="pb-3">
+                        <CardTitle className="text-xl text-school-green">{stage.title}</CardTitle>
+                        <CardDescription>{stage.description}</CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        {stage.items.map((item, itemIndex) => (
+                          <div key={itemIndex} className="flex">
+                            <div className="mr-4 mt-1">
+                              <item.icon className="h-6 w-6 text-school-gold" />
+                            </div>
+                            <div>
+                              <h4 className="font-medium">{item.title}</h4>
+                              <p className="text-sm text-gray-600">{item.description}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </CardContent>
+                      <CardFooter>
+                        <Button className="bg-school-gold hover:bg-school-brown text-white w-full">
+                          Learn More <ChevronRight className="h-4 w-4 ml-2" />
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex justify-center mt-8 gap-4">
+                <CarouselPrevious className="relative static translate-y-0" />
+                <CarouselNext className="relative static translate-y-0" />
+              </div>
+            </Carousel>
           </div>
         </div>
       </section>
 
       {/* Program Benefits */}
-      <section className="py-16">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Benefits of UGIEP" 
@@ -223,8 +364,13 @@ const UGIEP = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
             {benefits.map((benefit, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                <h3 className="text-lg font-medium text-school-green mb-2">{benefit.title}</h3>
+              <div key={index} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                <div className="flex items-center mb-4">
+                  <div className="bg-school-beige p-2 rounded-full mr-3">
+                    <Check className="h-5 w-5 text-school-gold" />
+                  </div>
+                  <h3 className="text-lg font-medium text-school-green">{benefit.title}</h3>
+                </div>
                 <p className="text-gray-600">{benefit.description}</p>
               </div>
             ))}
@@ -338,6 +484,21 @@ const UGIEP = () => {
                 </div>
               </TabsContent>
             </Tabs>
+          </div>
+        </div>
+      </section>
+
+      {/* UGIEP Gallery */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <SectionTitle 
+            title="UGIEP Gallery" 
+            subtitle="Visual documentation of our implementation process"
+            center
+          />
+          
+          <div className="mt-12">
+            <Gallery images={galleryImages} columns={3} />
           </div>
         </div>
       </section>
