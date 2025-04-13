@@ -31,9 +31,9 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Facilities", path: "/facilities" },
-    { name: "CIA Official", path: "/official" },
+    { name: "Official & Management", path: "/official-management" },
+    { name: "UGIEP", path: "/ugiep" },
     { name: "Establishments", path: "/establishments" },
-    { name: "Management", path: "/management" },
     { name: "Gallery", path: "/gallery" },
     { name: "Store", path: "/store" }
   ];
