@@ -7,7 +7,7 @@ interface DownloadCardProps {
   title: string;
   description?: string;
   fileUrl: string;
-  fileType: "pdf" | "doc" | "other";
+  fileType: "pdf" | "doc" | "other" | string;
   className?: string;
 }
 

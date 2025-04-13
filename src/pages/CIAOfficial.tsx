@@ -22,19 +22,19 @@ const CIAOfficial = () => {
         title: "Admission Application Form",
         description: "General application form for student admission to all classes",
         fileUrl: "#",
-        fileType: "pdf"
+        fileType: "pdf" as const
       },
       {
         title: "Transfer Certificate Form",
         description: "Application for obtaining transfer certificate",
         fileUrl: "#",
-        fileType: "pdf"
+        fileType: "pdf" as const
       },
       {
         title: "Scholarship Application Form",
         description: "Application for scholarship consideration based on merit or financial need",
         fileUrl: "#",
-        fileType: "pdf"
+        fileType: "pdf" as const
       }
     ],
     brochures: [
@@ -42,19 +42,19 @@ const CIAOfficial = () => {
         title: "School Brochure 2024-25",
         description: "Comprehensive information about the school, facilities, and programs",
         fileUrl: "#",
-        fileType: "pdf"
+        fileType: "pdf" as const
       },
       {
         title: "Academic Programs Overview",
         description: "Detailed information about our academic programs and curriculum",
         fileUrl: "#",
-        fileType: "pdf"
+        fileType: "pdf" as const
       },
       {
         title: "Extracurricular Activities Guide",
         description: "Information about sports, clubs, and extracurricular opportunities",
         fileUrl: "#",
-        fileType: "pdf"
+        fileType: "pdf" as const
       }
     ],
     curriculum: [
@@ -62,25 +62,25 @@ const CIAOfficial = () => {
         title: "Primary School Curriculum",
         description: "Curriculum details for classes KG to 5th",
         fileUrl: "#",
-        fileType: "pdf"
+        fileType: "pdf" as const
       },
       {
         title: "Middle School Curriculum",
         description: "Curriculum details for classes 6th to 8th",
         fileUrl: "#",
-        fileType: "pdf"
+        fileType: "pdf" as const
       },
       {
         title: "Secondary School Curriculum",
         description: "Curriculum details for classes 9th to 12th",
         fileUrl: "#",
-        fileType: "pdf"
+        fileType: "pdf" as const
       },
       {
         title: "Academic Calendar 2024-25",
         description: "School calendar with important dates, holidays, and events",
         fileUrl: "#",
-        fileType: "doc"
+        fileType: "doc" as const
       }
     ],
     feeStructure: [
@@ -88,19 +88,19 @@ const CIAOfficial = () => {
         title: "Fee Structure 2024-25",
         description: "Comprehensive fee details for all classes and programs",
         fileUrl: "#",
-        fileType: "pdf"
+        fileType: "pdf" as const
       },
       {
         title: "Payment Guidelines",
         description: "Information about payment methods, deadlines, and policies",
         fileUrl: "#",
-        fileType: "pdf"
+        fileType: "pdf" as const
       },
       {
         title: "Scholarship & Financial Aid Information",
         description: "Details about available scholarships and financial assistance programs",
         fileUrl: "#",
-        fileType: "pdf"
+        fileType: "pdf" as const
       }
     ]
   };
