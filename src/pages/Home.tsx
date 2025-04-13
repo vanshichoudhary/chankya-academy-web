@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -6,7 +5,7 @@ import SectionTitle from "@/components/SectionTitle";
 import Gallery from "@/components/Gallery";
 import VideoPlayer from "@/components/VideoPlayer";
 import ContactForm from "@/components/ContactForm";
-import { Check, GraduationCap, BookOpen, Building, Users, Award, ArrowRight } from "lucide-react";
+import { Check, GraduationCap, BookOpen, Building, Users, Award, ArrowRight, MapPin, Phone, Mail } from "lucide-react";
 
 const Home = () => {
   const highlights = [

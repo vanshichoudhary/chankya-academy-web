@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Download, FileText, FilePdf } from "lucide-react";
+import { Download, FileText, File } from "lucide-react";
 
 interface DownloadCardProps {
   title: string;
@@ -18,7 +18,7 @@ const DownloadCard: React.FC<DownloadCardProps> = ({
   fileType,
   className = "" 
 }) => {
-  const FileIcon = fileType === "pdf" ? FilePdf : FileText;
+  const FileIcon = fileType === "pdf" ? File : FileText;
   
   return (
     <div className={`p-6 border rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow ${className}`}>
