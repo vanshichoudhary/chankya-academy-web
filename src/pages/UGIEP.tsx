@@ -19,8 +19,8 @@ import {
 } from "@/components/ui/tabs";
 import { 
   BookOpen, 
-  Flask, 
-  Robot, 
+  Beaker, 
+  Bot, 
   Brain, 
   Calendar, 
   Building, 
@@ -66,7 +66,7 @@ const UGIEP = () => {
         {
           title: "Specialized Labs",
           description: "Setting up initial STEM, coding, and robotics training facilities",
-          icon: Flask
+          icon: Beaker
         },
         {
           title: "Training Programs",
@@ -87,7 +87,7 @@ const UGIEP = () => {
         {
           title: "Robotics Lab",
           description: "Advanced robotics lab with state-of-the-art equipment and learning resources",
-          icon: Robot
+          icon: Bot
         },
         {
           title: "AI & Computer Science Facilities",
