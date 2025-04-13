@@ -1,18 +1,23 @@
-
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PageHeader from "@/components/PageHeader";
 import SectionTitle from "@/components/SectionTitle";
+import ButtonLink from "@/components/ButtonLink";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Download, ShoppingCart, Book, Shirt, BookOpen, FileText, ShoppingBag, Laptop } from "lucide-react";
+import { Download, ShoppingCart, Book, Shirt, BookOpen, FileText, ShoppingBag, Laptop, IndianRupee, CreditCard, AlertCircle } from "lucide-react";
+import { openWhatsApp } from "@/utils/whatsApp";
+import { toast } from "sonner";
 
 const Store = () => {
   const [cartItems, setCartItems] = useState(0);
+  const navigate = useNavigate();
 
-  const addToCart = () => {
-    setCartItems(cartItems + 1);
+  const addToCart = (product) => {
+    openWhatsApp(product.name, product.price);
+    toast.success("Opening WhatsApp to place your order");
   };
 
   const physicalProducts = [
@@ -139,11 +144,53 @@ const Store = () => {
     }
   ];
 
+  // Fee payment options
+  const feePayments = [
+    {
+      id: 1,
+      name: "Tuition Fee Payment",
+      description: "Pay your quarterly or annual tuition fees online",
+      amount: "Varies by class",
+      icon: <Book size={40} className="text-school-green" />,
+      buttonText: "Pay Tuition Fee"
+    },
+    {
+      id: 2,
+      name: "Transportation Fee",
+      description: "Pay school bus and transportation charges",
+      amount: "₹3,000 - ₹8,000",
+      icon: <ShoppingBag size={40} className="text-school-green" />,
+      buttonText: "Pay Transport Fee"
+    },
+    {
+      id: 3,
+      name: "Examination Fee",
+      description: "Pay for term exams and assessment tests",
+      amount: "₹500 - ₹2,000",
+      icon: <FileText size={40} className="text-school-green" />,
+      buttonText: "Pay Exam Fee"
+    },
+    {
+      id: 4,
+      name: "Activity & Excursion Fee",
+      description: "Pay for extracurricular activities and field trips",
+      amount: "₹1,000 - ₹5,000",
+      icon: <Laptop size={40} className="text-school-green" />,
+      buttonText: "Pay Activity Fee"
+    }
+  ];
+
+  const handlePayment = (feeType) => {
+    toast.info(`Opening payment gateway for ${feeType}`);
+    // In a real implementation, this would redirect to a payment gateway
+    navigate("/payment", { state: { feeType } });
+  };
+
   return (
     <div>
       <PageHeader 
         title="School Store" 
-        subtitle="Purchase uniforms, books, and access free digital resources" 
+        subtitle="Purchase uniforms, books, pay fees, and access free digital resources" 
         background="/placeholder.svg"
       />
 
@@ -153,7 +200,7 @@ const Store = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-serif font-bold text-school-green mb-6">Welcome to CIA Store</h2>
             <p className="text-gray-600 mb-8">
-              Our school store offers everything students need for their academic journey, from uniforms and books to digital resources. Parents can conveniently purchase school supplies while students can access free educational materials to support their learning.
+              Our school store offers everything students need for their academic journey, from uniforms and books to digital resources. Parents can conveniently purchase school supplies and pay fees online.
             </p>
           </div>
         </div>
@@ -172,6 +219,10 @@ const Store = () => {
                 <Laptop size={18} />
                 <span>Digital Resources</span>
               </TabsTrigger>
+              <TabsTrigger value="payments" className="flex items-center gap-2">
+                <CreditCard size={18} />
+                <span>Pay Fees</span>
+              </TabsTrigger>
             </TabsList>
             
             {/* Physical Store */}
@@ -179,17 +230,8 @@ const Store = () => {
               <div className="flex justify-between items-center mb-8">
                 <SectionTitle 
                   title="Physical Store" 
-                  subtitle="Purchase uniforms, books, and other school supplies"
+                  subtitle="Purchase uniforms, books, and other school supplies via WhatsApp"
                 />
-                <div className="relative">
-                  <Button variant="outline" className="flex items-center gap-2">
-                    <ShoppingCart size={18} />
-                    <span>Cart</span>
-                    {cartItems > 0 && (
-                      <Badge className="absolute -top-2 -right-2 bg-school-green">{cartItems}</Badge>
-                    )}
-                  </Button>
-                </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -220,11 +262,11 @@ const Store = () => {
                     </CardContent>
                     <CardFooter className="p-4 pt-0">
                       <Button 
-                        className="w-full bg-school-green hover:bg-school-brown text-white"
-                        onClick={addToCart}
+                        className="w-full bg-green-500 hover:bg-green-600 text-white"
+                        onClick={() => addToCart(product)}
                       >
                         <ShoppingCart size={16} className="mr-2" />
-                        Add to Cart
+                        Order via WhatsApp
                       </Button>
                     </CardFooter>
                   </Card>
@@ -232,14 +274,14 @@ const Store = () => {
               </div>
               
               <div className="mt-12 text-center">
-                <p className="text-gray-600 mb-4">Looking for something specific? Visit our physical store or contact us for custom orders.</p>
-                <Button variant="outline" className="border-school-green text-school-green hover:bg-school-green hover:text-white">
-                  View Complete Catalog
+                <p className="text-gray-600 mb-4">Looking for something specific? Contact us directly on WhatsApp for custom orders.</p>
+                <Button onClick={() => openWhatsApp("Custom Order")} variant="outline" className="border-school-green text-school-green hover:bg-school-green hover:text-white">
+                  Request Custom Order
                 </Button>
               </div>
             </TabsContent>
             
-            {/* Digital Resources */}
+            {/* Digital Resources - Keep this section mostly the same */}
             <TabsContent value="digital">
               <SectionTitle 
                 title="Digital Resources" 
@@ -300,6 +342,95 @@ const Store = () => {
                     <Button className="bg-school-green hover:bg-school-brown text-white">
                       Access Resource Portal
                     </Button>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+            
+            {/* New Fee Payments Tab */}
+            <TabsContent value="payments">
+              <SectionTitle 
+                title="Fee Payments" 
+                subtitle="Pay school fees securely through our online payment system"
+              />
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                {feePayments.map((fee) => (
+                  <Card key={fee.id} className="overflow-hidden">
+                    <div className="flex flex-col md:flex-row">
+                      <div className="md:w-1/4 bg-gray-50 p-6 flex justify-center items-center">
+                        {fee.icon}
+                      </div>
+                      <div className="md:w-3/4 p-6">
+                        <h3 className="text-xl font-bold text-school-green mb-2">{fee.name}</h3>
+                        <p className="text-gray-600 mb-3">{fee.description}</p>
+                        <div className="flex items-center mb-4">
+                          <IndianRupee size={16} className="text-gray-500 mr-1" />
+                          <span className="text-gray-700 font-medium">{fee.amount}</span>
+                        </div>
+                        <Button 
+                          className="w-full bg-school-green hover:bg-school-brown text-white"
+                          onClick={() => handlePayment(fee.name)}
+                        >
+                          <CreditCard size={16} className="mr-2" />
+                          {fee.buttonText}
+                        </Button>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+              
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-10">
+                <div className="flex items-start">
+                  <AlertCircle className="text-amber-500 mr-3 mt-1" size={20} />
+                  <div>
+                    <h4 className="font-medium text-amber-800 mb-2">Important Information</h4>
+                    <ul className="text-amber-700 text-sm space-y-2">
+                      <li>All online payments are secured by industry-standard encryption</li>
+                      <li>Please keep your payment receipt for reference</li>
+                      <li>For any payment-related issues, contact our accounts department</li>
+                      <li>Late payment fees may apply after due dates</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-md">
+                <h3 className="text-xl font-serif font-bold text-school-green mb-4">Alternative Payment Methods</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="border border-gray-200 rounded-lg p-4 text-center">
+                    <h4 className="font-medium mb-2">Bank Transfer</h4>
+                    <p className="text-sm text-gray-600">Transfer fees directly to our bank account</p>
+                    <ButtonLink 
+                      href="https://forms.google.com/bank-details" 
+                      variant="outline"
+                      className="mt-3 border-school-green text-school-green hover:bg-school-green hover:text-white"
+                    >
+                      Get Bank Details
+                    </ButtonLink>
+                  </div>
+                  <div className="border border-gray-200 rounded-lg p-4 text-center">
+                    <h4 className="font-medium mb-2">School Office</h4>
+                    <p className="text-sm text-gray-600">Pay at the school accounts office</p>
+                    <Button 
+                      variant="outline"
+                      className="mt-3 border-school-green text-school-green hover:bg-school-green hover:text-white"
+                      onClick={() => openWhatsApp("Payment at School Office")}
+                    >
+                      Contact Office
+                    </Button>
+                  </div>
+                  <div className="border border-gray-200 rounded-lg p-4 text-center">
+                    <h4 className="font-medium mb-2">Request Fee Structure</h4>
+                    <p className="text-sm text-gray-600">Get detailed fee structure for all classes</p>
+                    <ButtonLink 
+                      href="https://forms.google.com/fee-structure-request" 
+                      variant="outline"
+                      className="mt-3 border-school-green text-school-green hover:bg-school-green hover:text-white"
+                    >
+                      Request Details
+                    </ButtonLink>
                   </div>
                 </div>
               </div>

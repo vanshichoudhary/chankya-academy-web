@@ -1,9 +1,8 @@
-
 import React from "react";
 import PageHeader from "@/components/PageHeader";
 import SectionTitle from "@/components/SectionTitle";
 import DownloadCard from "@/components/DownloadCard";
-import ContactForm from "@/components/ContactForm";
+import ButtonLink from "@/components/ButtonLink";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { 
@@ -12,7 +11,10 @@ import {
   CreditCard, 
   HelpCircle, 
   MessageSquare,
-  FileQuestion
+  FileQuestion,
+  Send,
+  FileInput,
+  ClipboardList
 } from "lucide-react";
 
 const CIAOfficial = () => {
@@ -203,12 +205,12 @@ const CIAOfficial = () => {
         </div>
       </section>
 
-      {/* Forms Section */}
+      {/* Google Forms Section - Replaced Contact Forms */}
       <section className="py-16 bg-school-beige">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Online Forms & Inquiries" 
-            subtitle="Submit applications, enquiries, and feedback online"
+            subtitle="Submit applications, enquiries, and feedback through our Google Forms"
             center
           />
           
@@ -229,42 +231,91 @@ const CIAOfficial = () => {
             </TabsList>
             
             <TabsContent value="enquiry">
-              <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
-                <ContactForm 
-                  title="General Enquiry Form"
-                  subtitle="Have questions about our school or programs? Fill out this form, and our team will get back to you shortly."
-                  submitButtonText="Submit Enquiry"
-                />
+              <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+                <h3 className="text-xl font-bold text-school-green mb-3">General Enquiry Form</h3>
+                <p className="text-gray-600 mb-6">
+                  Have questions about our school or programs? Fill out our online enquiry form, and our team will get back to you shortly.
+                </p>
+                <div className="space-y-4">
+                  <ButtonLink 
+                    href="https://forms.google.com/enquiry-form" 
+                    className="bg-school-green hover:bg-school-brown text-white"
+                    icon={<Send size={18} />}
+                  >
+                    Fill Enquiry Form
+                  </ButtonLink>
+                  
+                  <div className="pt-4 mt-4 border-t border-gray-200">
+                    <h4 className="font-medium mb-2">What happens after you submit:</h4>
+                    <ul className="list-disc list-inside text-gray-600 text-sm space-y-1">
+                      <li>Our team reviews your enquiry within 24 hours</li>
+                      <li>You'll receive an email confirmation immediately</li>
+                      <li>A school representative will contact you directly</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </TabsContent>
             
             <TabsContent value="application">
-              <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
-                <ContactForm 
-                  title="Online Application"
-                  subtitle="Apply for admission by completing this form. Our admissions team will contact you with next steps."
-                  submitButtonText="Submit Application"
-                />
-                <div className="mt-6 pt-6 border-t border-gray-200 text-center">
-                  <p className="text-gray-600 mb-4">Prefer to apply using our PDF form?</p>
-                  <Button 
+              <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+                <h3 className="text-xl font-bold text-school-green mb-3">Online Application</h3>
+                <p className="text-gray-600 mb-6">
+                  Apply for admission by completing our detailed application form. Our admissions team will contact you with next steps.
+                </p>
+                <div className="space-y-4">
+                  <ButtonLink 
+                    href="https://forms.google.com/admission-application" 
+                    className="bg-school-green hover:bg-school-brown text-white"
+                    icon={<FileInput size={18} />}
+                  >
+                    Start Application Process
+                  </ButtonLink>
+                  
+                  <ButtonLink 
+                    href="https://forms.google.com/scholarship-application" 
                     variant="outline"
                     className="border-school-green text-school-green hover:bg-school-green hover:text-white"
+                    icon={<ClipboardList size={18} />}
                   >
-                    <Download size={16} className="mr-2" />
-                    Download Application Form
-                  </Button>
+                    Apply for Scholarship
+                  </ButtonLink>
+                  
+                  <div className="pt-4 mt-4 border-t border-gray-200">
+                    <h4 className="font-medium mb-2">Application Process:</h4>
+                    <ol className="list-decimal list-inside text-gray-600 text-sm space-y-1">
+                      <li>Complete the online application form</li>
+                      <li>Submit required documents</li>
+                      <li>Schedule an entrance assessment</li>
+                      <li>Attend an interview</li>
+                      <li>Receive admission decision</li>
+                    </ol>
+                  </div>
                 </div>
               </div>
             </TabsContent>
             
             <TabsContent value="feedback">
-              <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
-                <ContactForm 
-                  title="Feedback & Suggestions"
-                  subtitle="We value your feedback. Share your thoughts, suggestions, or concerns with us."
-                  submitButtonText="Submit Feedback"
-                />
+              <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+                <h3 className="text-xl font-bold text-school-green mb-3">Feedback & Suggestions</h3>
+                <p className="text-gray-600 mb-6">
+                  We value your feedback. Share your thoughts, suggestions, or concerns with us through our feedback form.
+                </p>
+                <div className="space-y-4">
+                  <ButtonLink 
+                    href="https://forms.google.com/feedback-form" 
+                    className="bg-school-green hover:bg-school-brown text-white"
+                    icon={<MessageSquare size={18} />}
+                  >
+                    Submit Feedback
+                  </ButtonLink>
+                  
+                  <div className="pt-4 mt-4 border-t border-gray-200">
+                    <p className="text-gray-600 text-sm">
+                      Your feedback helps us improve our services and provide a better educational experience for all students. All submissions are reviewed by our management team.
+                    </p>
+                  </div>
+                </div>
               </div>
             </TabsContent>
           </Tabs>

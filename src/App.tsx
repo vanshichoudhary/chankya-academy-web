@@ -12,8 +12,10 @@ import UGIEP from "./pages/UGIEP";
 import Establishments from "./pages/Establishments";
 import Gallery from "./pages/Gallery";
 import Store from "./pages/Store";
+import Payment from "./pages/Payment";
 import Legal from "./pages/Legal";
 import NotFound from "./pages/NotFound";
+import WhatsAppChat from "./components/WhatsAppChat";
 
 const queryClient = new QueryClient();
 
@@ -32,10 +34,12 @@ const App = () => (
             <Route path="establishments" element={<Establishments />} />
             <Route path="gallery" element={<Gallery />} />
             <Route path="store" element={<Store />} />
+            <Route path="payment" element={<Payment />} />
             <Route path="legal" element={<Legal />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
+        <WhatsAppChat />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
