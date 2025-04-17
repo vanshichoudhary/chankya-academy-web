@@ -1,9 +1,9 @@
 
+import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import WhatsAppChat from "./WhatsAppChat";
 
 // ScrollToTop component to ensure page scrolls to top on route change
 const ScrollToTop = () => {
@@ -16,7 +16,7 @@ const ScrollToTop = () => {
   return null;
 };
 
-const Layout = () => {
+const Layout: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <ScrollToTop />
@@ -25,7 +25,6 @@ const Layout = () => {
         <Outlet />
       </main>
       <Footer />
-      <WhatsAppChat />
     </div>
   );
 };

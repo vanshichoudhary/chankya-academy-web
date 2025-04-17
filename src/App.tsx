@@ -1,4 +1,5 @@
 
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,34 +16,37 @@ import Store from "./pages/Store";
 import Payment from "./pages/Payment";
 import Legal from "./pages/Legal";
 import NotFound from "./pages/NotFound";
-import WhatsAppChat from "./components/WhatsAppChat";
 
+// Create a client
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="facilities" element={<Facilities />} />
-            <Route path="cia-official" element={<CIAOfficial />} />
-            <Route path="ugiep" element={<UGIEP />} />
-            <Route path="establishments" element={<Establishments />} />
-            <Route path="gallery" element={<Gallery />} />
-            <Route path="store" element={<Store />} />
-            <Route path="payment" element={<Payment />} />
-            <Route path="legal" element={<Legal />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-        <WhatsAppChat />
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App: React.FC = () => {
+  return (
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="facilities" element={<Facilities />} />
+                <Route path="cia-official" element={<CIAOfficial />} />
+                <Route path="ugiep" element={<UGIEP />} />
+                <Route path="establishments" element={<Establishments />} />
+                <Route path="gallery" element={<Gallery />} />
+                <Route path="store" element={<Store />} />
+                <Route path="payment" element={<Payment />} />
+                <Route path="legal" element={<Legal />} />
+                <Route path="*" element={<NotFound />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </React.StrictMode>
+  );
+};
 
 export default App;
