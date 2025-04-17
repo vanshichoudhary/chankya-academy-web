@@ -4,6 +4,7 @@ import MediaPublications from "@/components/MediaPublications";
 import StudentMessages from "@/components/StudentMessages";
 import Gallery from "@/components/Gallery";
 import SectionTitle from "@/components/SectionTitle";
+import CollaborationJourney from "@/components/CollaborationJourney";
 import { Button } from "@/components/ui/button";
 import { Rocket, Lightbulb, ShieldCheck, FileText } from "lucide-react";
 
@@ -25,6 +26,9 @@ const WeInvite = () => {
         subtitle="Join our mission to empower the next generation through global collaboration"
         background="/placeholder.svg"
       />
+      
+      {/* New Collaboration Journey Component */}
+      <CollaborationJourney />
       
       {/* The Journey Section */}
       <section className="py-16">
