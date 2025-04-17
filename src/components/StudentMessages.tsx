@@ -8,7 +8,8 @@ import {
   ThumbsUp,
   Globe,
   ArrowLeft,
-  ArrowRight
+  ArrowRight,
+  Heart
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionTitle from "./SectionTitle";
@@ -136,7 +137,7 @@ const StudentMessages = () => {
                     {messages.map((_, index) => (
                       <span 
                         key={index} 
-                        className={`block w-2 h-2 rounded-full mx-1 ${
+                        className={`block w-2 h-2 rounded-full mx-1 cursor-pointer ${
                           index === currentMessageIndex ? "bg-school-green" : "bg-gray-300"
                         }`}
                         onClick={() => setCurrentMessageIndex(index)}
@@ -148,9 +149,9 @@ const StudentMessages = () => {
                     <Button 
                       variant="ghost" 
                       size="sm" 
-                      className="text-school-green hover:text-school-brown hover:bg-transparent"
+                      className="text-school-green hover:text-school-brown hover:bg-transparent flex items-center"
                     >
-                      <ThumbsUp size={16} className="mr-1" />
+                      <Heart size={16} className="mr-1" />
                       Inspiring
                     </Button>
                   </div>
