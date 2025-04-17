@@ -1,354 +1,451 @@
-
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { 
-  Globe, 
-  Users, 
-  BookOpen, 
-  Award, 
-  FileText, 
-  Rocket, 
-  Lightbulb, 
-  Handshake, 
-  ArrowRight, 
-  Building,
-  Download,
-  ExternalLink,
-  Flag
-} from "lucide-react";
-import { motion } from "framer-motion";
 import PageHeader from "@/components/PageHeader";
+import MediaPublications from "@/components/MediaPublications";
+import StudentMessages from "@/components/StudentMessages";
+import Gallery from "@/components/Gallery";
 import SectionTitle from "@/components/SectionTitle";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import ButtonLink from "@/components/ButtonLink";
+import { Rocket, Lightbulb, ShieldCheck, FileText } from "lucide-react";
 
-const WeInvite: React.FC = () => {
-  const navigate = useNavigate();
-
-  // Animation variants for staggered animations
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5
-      }
-    }
-  };
-
-  // Journey milestones
-  const journeyMilestones = [
-    {
-      title: "Connect",
-      description: "Reach out to us and share your organization's vision",
-      icon: <Handshake className="text-school-green h-8 w-8" />,
-    },
-    {
-      title: "Collaborate",
-      description: "Design collaborative programs that benefit students",
-      icon: <Users className="text-school-green h-8 w-8" />,
-    },
-    {
-      title: "Implement",
-      description: "Launch initiatives that empower the next generation",
-      icon: <Rocket className="text-school-green h-8 w-8" />,
-    },
-    {
-      title: "Impact",
-      description: "Measure and celebrate the positive change created",
-      icon: <Award className="text-school-green h-8 w-8" />,
-    },
-  ];
-
-  // Benefits for partners
-  const benefits = [
-    {
-      title: "Global Visibility",
-      description: "Showcase your social impact to a global audience through our network",
-      icon: <Globe className="h-8 w-8 text-school-gold" />,
-    },
-    {
-      title: "Youth Engagement",
-      description: "Direct access to bright young minds eager to engage with global issues",
-      icon: <Users className="h-8 w-8 text-school-gold" />,
-    },
-    {
-      title: "Innovation Hub",
-      description: "Co-create innovative solutions to pressing educational challenges",
-      icon: <Lightbulb className="h-8 w-8 text-school-gold" />,
-    },
-    {
-      title: "Community Impact",
-      description: "Create lasting positive change in rural Indian communities",
-      icon: <Building className="h-8 w-8 text-school-gold" />,
-    },
-  ];
-
-  // Available documents
-  const documents = [
-    {
-      title: "Partnership Framework",
-      description: "Guidelines and structure for organizational partnerships",
-      buttonText: "Download Framework",
-      link: "https://forms.gle/1234567890"
-    },
-    {
-      title: "Impact Report 2024",
-      description: "Our achievements and impact on student development",
-      buttonText: "View Report",
-      link: "https://forms.gle/2345678901"
-    },
-    {
-      title: "Collaboration Proposal",
-      description: "Template for submitting your collaboration ideas",
-      buttonText: "Get Template",
-      link: "https://forms.gle/3456789012"
-    },
-  ];
-
-  // Collaboration areas
-  const collaborationAreas = [
-    {
-      title: "Educational Workshops",
-      description: "Conduct specialized workshops that enrich our curriculum and expose students to global perspectives",
-    },
-    {
-      title: "Technology & Innovation",
-      description: "Help implement modern technological solutions in our classrooms and teaching methodologies",
-    },
-    {
-      title: "Environmental Initiatives",
-      description: "Partner on sustainability projects that teach students about environmental stewardship",
-    },
-    {
-      title: "Cultural Exchange",
-      description: "Create opportunities for cultural exchange and global awareness",
-    },
-    {
-      title: "Scholarships & Funding",
-      description: "Support deserving students through scholarship programs",
-    },
+const WeInvite = () => {
+  // Sample gallery images for the gallery section
+  const galleryImages = [
+    { src: "/placeholder.svg", alt: "International Collaboration", caption: "Students from 5 countries working on climate solutions" },
+    { src: "/placeholder.svg", alt: "Innovation Workshop", caption: "Innovation workshop with tech industry partners" },
+    { src: "/placeholder.svg", alt: "Environmental Initiative", caption: "Tree planting initiative with local community" },
+    { src: "/placeholder.svg", alt: "Cultural Exchange", caption: "Cultural exchange program with visiting delegates" },
+    { src: "/placeholder.svg", alt: "Student Leadership", caption: "Youth leadership summit hosted at Chankya Academy" },
+    { src: "/placeholder.svg", alt: "Community Service", caption: "Students leading literacy program in rural communities" }
   ];
 
   return (
-    <div className="bg-school-beige min-h-screen">
-      {/* Hero Section */}
+    <div>
       <PageHeader 
-        title="Join Us in Empowering the Next Generation" 
-        subtitle="Chankya International Academy invites global partners to shape the future of education"
+        title="We Invite" 
+        subtitle="Join our mission to empower the next generation through global collaboration"
         background="/placeholder.svg"
       />
-
-      {/* Introduction */}
-      <section className="py-16 bg-white">
+      
+      {/* The Journey Section */}
+      <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-serif font-bold text-school-green mb-6">Our Invitation to the World</h2>
-            <p className="text-lg text-gray-700 mb-8">
-              Chankya International Academy extends a warm invitation to worldwide international organizations, 
-              non-profit foundations, CSR programs, clubs, societies, initiatives, philanthropists, 
-              social activists, environmental heroes, innovators, and all youths who want to contribute 
-              to our mission of empowering the next generation.
-            </p>
-            <div className="flex justify-center space-x-4">
-              <ButtonLink
-                href="https://forms.gle/abcdefgh12345"
-                variant="default"
-                className="bg-school-green hover:bg-school-green/90 text-white font-medium px-8 py-3"
-                icon={<Flag />}
-              >
-                Start Your Journey With Us
-              </ButtonLink>
-              <ButtonLink
-                href="https://forms.gle/ijklmnop67890"
-                variant="outline"
-                className="border-school-green text-school-green hover:bg-school-green/10 font-medium px-8 py-3"
-                icon={<ExternalLink />}
-              >
-                Schedule a Meeting
-              </ButtonLink>
+          <SectionTitle 
+            title="Our Journey" 
+            subtitle="From local roots to global impact, discover our path to educational excellence"
+            center
+          />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+            {/* Phase 1: Foundation */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Foundation" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <Rocket size={20} className="text-school-green mr-2" />
+                  <h3 className="text-xl font-medium">Foundation</h3>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Established in 2005, we laid the groundwork for innovative education with a focus on core values.
+                </p>
+                <Button variant="outline" className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white">
+                  Explore Our History
+                </Button>
+              </div>
+            </div>
+            
+            {/* Phase 2: Innovation */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Innovation" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <Lightbulb size={20} className="text-school-green mr-2" />
+                  <h3 className="text-xl font-medium">Innovation</h3>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  From 2010, we introduced advanced programs in STEM, arts, and leadership, fostering creativity and critical thinking.
+                </p>
+                <Button variant="outline" className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white">
+                  Discover Our Programs
+                </Button>
+              </div>
+            </div>
+            
+            {/* Phase 3: Global Impact */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Global Impact" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <ShieldCheck size={20} className="text-school-green mr-2" />
+                  <h3 className="text-xl font-medium">Global Impact</h3>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Since 2018, we've expanded internationally, partnering with schools worldwide to promote cross-cultural education.
+                </p>
+                <Button variant="outline" className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white">
+                  See Our Global Initiatives
+                </Button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Journey Section */}
-      <section className="py-16 bg-gradient-to-br from-white to-school-beige">
+      {/* Roadmap Section */}
+      <section className="py-16 bg-school-beige">
         <div className="container mx-auto px-4">
           <SectionTitle 
-            title="Your Collaboration Journey" 
-            subtitle="A simple process to create meaningful impact together"
+            title="Our Roadmap" 
+            subtitle="Charting the course for future growth and global collaboration"
             center
           />
           
-          <motion.div 
-            className="grid md:grid-cols-4 gap-8 mt-12"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {journeyMilestones.map((milestone, index) => (
-              <motion.div 
-                key={index} 
-                className="relative"
-                variants={itemVariants}
-              >
-                <div className="bg-white rounded-lg shadow-lg p-6 h-full border-t-4 border-school-green">
-                  <div className="flex justify-center mb-4">
-                    {milestone.icon}
-                  </div>
-                  <h3 className="text-xl font-serif font-bold text-center mb-3">{milestone.title}</h3>
-                  <p className="text-gray-600 text-center">{milestone.description}</p>
-                  
-                  {/* Connector line (except for the last item) */}
-                  {index < journeyMilestones.length - 1 && (
-                    <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-school-gold">
-                      <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
-                        <ArrowRight className="h-4 w-4 text-school-gold" />
-                      </div>
-                    </div>
-                  )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+            {/* 2024: Strengthen Partnerships */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Partnerships" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-medium mb-4">2024: Strengthen Partnerships</h3>
+                <p className="text-gray-600 mb-4">
+                  Deepen relationships with existing international partners and establish new collaborations in Asia and Africa.
+                </p>
+                <Button variant="outline" className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white">
+                  Learn About Our Partners
+                </Button>
+              </div>
+            </div>
+            
+            {/* 2025: Launch Innovation Hubs */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Innovation Hubs" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-medium mb-4">2025: Launch Innovation Hubs</h3>
+                <p className="text-gray-600 mb-4">
+                  Create regional hubs focused on STEM education, sustainable practices, and leadership development.
+                </p>
+                <Button variant="outline" className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white">
+                  Explore Innovation Hubs
+                </Button>
+              </div>
+            </div>
+            
+            {/* 2026: Global Education Network */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Global Network" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-medium mb-4">2026: Global Education Network</h3>
+                <p className="text-gray-600 mb-4">
+                  Establish a comprehensive network connecting students, educators, and institutions worldwide.
+                </p>
+                <Button variant="outline" className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white">
+                  Join Our Network
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits of Collaboration Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <SectionTitle 
+            title="Benefits of Collaboration" 
+            subtitle="Discover the advantages of partnering with Chankya International Academy"
+            center
+          />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+            {/* Enhanced Learning */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Enhanced Learning" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-medium mb-4">Enhanced Learning</h3>
+                <p className="text-gray-600 mb-4">
+                  Access innovative teaching methods, advanced resources, and collaborative projects that enrich the learning experience.
+                </p>
+                <Button variant="outline" className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white">
+                  Explore Learning Resources
+                </Button>
+              </div>
+            </div>
+            
+            {/* Cultural Exchange */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Cultural Exchange" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-medium mb-4">Cultural Exchange</h3>
+                <p className="text-gray-600 mb-4">
+                  Participate in exchange programs, cultural events, and global initiatives that promote understanding and appreciation.
+                </p>
+                <Button variant="outline" className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white">
+                  Join Our Exchange Programs
+                </Button>
+              </div>
+            </div>
+            
+            {/* Global Network */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Global Network" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-medium mb-4">Global Network</h3>
+                <p className="text-gray-600 mb-4">
+                  Connect with a diverse community of students, educators, and leaders from around the world.
+                </p>
+                <Button variant="outline" className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white">
+                  Connect With Our Network
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Documents and Resources Section */}
+      <section className="py-16 bg-school-beige">
+        <div className="container mx-auto px-4">
+          <SectionTitle 
+            title="Documents and Resources" 
+            subtitle="Access essential documents and resources for collaboration"
+            center
+          />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+            {/* Partnership Brochure */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Partnership Brochure" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <FileText size={20} className="text-school-green mr-2" />
+                  <h3 className="text-xl font-medium">Partnership Brochure</h3>
                 </div>
-                
-                <div className="flex justify-center mt-4">
-                  <div className="bg-school-gold text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
-                    {index + 1}
-                  </div>
+                <p className="text-gray-600 mb-4">
+                  Learn about our partnership programs, benefits, and how to get involved.
+                </p>
+                <Button variant="outline" className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white">
+                  Download Brochure
+                </Button>
+              </div>
+            </div>
+            
+            {/* Collaboration Guidelines */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Collaboration Guidelines" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <FileText size={20} className="text-school-green mr-2" />
+                  <h3 className="text-xl font-medium">Collaboration Guidelines</h3>
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <SectionTitle 
-            title="Partnership Benefits" 
-            subtitle="Why collaborating with Chankya International Academy creates value for your organization"
-            center
-          />
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="border-none shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardHeader className="pb-2">
-                  <div className="mb-2">{benefit.icon}</div>
-                  <CardTitle className="text-xl font-serif">{benefit.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">{benefit.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+                <p className="text-gray-600 mb-4">
+                  Understand the guidelines and expectations for successful collaboration.
+                </p>
+                <Button variant="outline" className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white">
+                  View Guidelines
+                </Button>
+              </div>
+            </div>
+            
+            {/* Application Form */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Application Form" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <FileText size={20} className="text-school-green mr-2" />
+                  <h3 className="text-xl font-medium">Application Form</h3>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Apply to become a partner and start your journey with us.
+                </p>
+                <Button variant="outline" className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white">
+                  Apply Now
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Documents Section */}
-      <section className="py-16 bg-gradient-to-br from-school-beige to-white">
+      {/* Visual Collaboration Boards Section */}
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <SectionTitle 
-            title="Essential Documents" 
-            subtitle="Resources to help you understand our mission and collaboration opportunities"
+            title="Visual Collaboration Boards" 
+            subtitle="Explore our collaborative projects and initiatives through visual boards"
             center
           />
           
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
-            {documents.map((doc, index) => (
-              <Card key={index} className="border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:translate-y-[-5px]">
-                <CardHeader className="pb-2">
-                  <div className="mb-2 text-school-green">
-                    <FileText className="h-8 w-8" />
-                  </div>
-                  <CardTitle className="text-xl font-serif">{doc.title}</CardTitle>
-                  <CardDescription>{doc.description}</CardDescription>
-                </CardHeader>
-                <CardFooter className="pt-2">
-                  <ButtonLink
-                    href={doc.link}
-                    className="w-full bg-school-green text-white hover:bg-school-green/90"
-                    icon={<Download className="h-5 w-5" />}
-                  >
-                    {doc.buttonText}
-                  </ButtonLink>
-                </CardFooter>
-              </Card>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+            {/* Board 1 */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Board 1" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-medium mb-4">STEM Education Initiatives</h3>
+                <p className="text-gray-600 mb-4">
+                  Explore our collaborative projects in science, technology, engineering, and mathematics.
+                </p>
+                <Button variant="outline" className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white">
+                  View Board
+                </Button>
+              </div>
+            </div>
+            
+            {/* Board 2 */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Board 2" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-medium mb-4">Sustainable Practices</h3>
+                <p className="text-gray-600 mb-4">
+                  Discover our initiatives for environmental sustainability and green education.
+                </p>
+                <Button variant="outline" className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white">
+                  View Board
+                </Button>
+              </div>
+            </div>
+          
+            {/* Board 3 */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Board 3" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-medium mb-4">Leadership Development</h3>
+                <p className="text-gray-600 mb-4">
+                  Learn about our programs for nurturing future leaders and promoting global citizenship.
+                </p>
+                <Button variant="outline" className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white">
+                  View Board
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Collaboration Areas Accordion */}
-      <section className="py-16 bg-white">
+      
+      {/* Media Publications Section */}
+      <MediaPublications />
+      
+      {/* Student Messages Section */}
+      <StudentMessages />
+      
+      {/* Gallery Highlights Section */}
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <SectionTitle 
-            title="Areas of Collaboration" 
-            subtitle="Explore the different ways your organization can partner with us"
+            title="Collaboration Highlights" 
+            subtitle="Visual moments from our international partnerships and initiatives"
             center
           />
           
-          <div className="max-w-3xl mx-auto mt-12">
-            <Accordion type="single" collapsible className="w-full">
-              {collaborationAreas.map((area, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-b border-gray-200">
-                  <AccordionTrigger className="text-left font-serif text-lg font-semibold hover:text-school-green">
-                    {area.title}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-gray-600">
-                    {area.description}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+          <div className="mt-10">
+            <Gallery images={galleryImages} columns={3} />
+          </div>
+          
+          <div className="mt-12 text-center">
+            <a href="/gallery" className="inline-block px-6 py-3 bg-school-green hover:bg-school-brown text-white rounded-md transition-colors">
+              View Full Gallery
+            </a>
           </div>
         </div>
       </section>
-
-      {/* Call to Action */}
-      <section className="py-16 bg-school-green text-white">
+      
+      {/* Call to Action Section */}
+      <section className="py-24 bg-gradient-to-r from-school-green to-school-brown text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-serif font-bold mb-6">Ready to Make a Difference?</h2>
-          <p className="text-lg max-w-2xl mx-auto mb-8">
-            Join our global network of partners who are helping shape the future of education 
-            and empower the next generation of leaders.
+          <h2 className="text-4xl font-serif font-bold mb-8">Ready to Collaborate?</h2>
+          <p className="text-xl mb-12 opacity-90">
+            Join us in shaping the future of education through global partnerships and innovative initiatives.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button 
-              onClick={() => window.open("https://forms.gle/qrstuvwxyz12345", "_blank")}
-              className="bg-white text-school-green hover:bg-gray-100 font-medium px-8 py-6 text-lg rounded-lg"
-            >
-              <Globe className="mr-2 h-5 w-5" />
-              Apply for Partnership
-            </Button>
-            <Button 
-              onClick={() => window.open("https://wa.me/919876543210?text=Hello%2C%20I%20am%20interested%20in%20partnering%20with%20Chankya%20International%20Academy", "_blank")}
-              className="bg-school-gold text-white hover:bg-school-brown font-medium px-8 py-6 text-lg rounded-lg"
-            >
-              <BookOpen className="mr-2 h-5 w-5" />
-              Learn More About Us
-            </Button>
-          </div>
+          <Button className="bg-white text-school-green hover:bg-gray-100 hover:text-school-brown">
+            Get Started
+          </Button>
         </div>
       </section>
     </div>
