@@ -15,6 +15,7 @@ import Gallery from "./pages/Gallery";
 import Store from "./pages/Store";
 import Payment from "./pages/Payment";
 import Legal from "./pages/Legal";
+import WeInvite from "./pages/WeInvite";
 import NotFound from "./pages/NotFound";
 
 // Create a client
@@ -39,6 +40,7 @@ const App: React.FC = () => {
                 <Route path="store" element={<Store />} />
                 <Route path="payment" element={<Payment />} />
                 <Route path="legal" element={<Legal />} />
+                <Route path="we-invite" element={<WeInvite />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>

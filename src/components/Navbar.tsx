@@ -2,13 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Mail, MapPin, ChevronDown } from "lucide-react";
-import { 
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
+import { Menu, X, Phone, Mail, MapPin, Globe, Users } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,7 +29,8 @@ const Navbar = () => {
     { name: "UGIEP", path: "/ugiep" },
     { name: "Establishments", path: "/establishments" },
     { name: "Gallery", path: "/gallery" },
-    { name: "Store", path: "/store" }
+    { name: "Store", path: "/store" },
+    { name: "We Invite", path: "/we-invite", highlight: true }
   ];
 
   return (
@@ -90,8 +85,9 @@ const Navbar = () => {
                     location.pathname === link.path
                       ? "text-school-green border-b-2 border-school-green"
                       : "text-gray-600 hover:text-school-green"
-                  }`}
+                  } ${link.highlight ? "flex items-center gap-1 bg-school-beige px-4 rounded-full ml-2" : ""}`}
                 >
+                  {link.name === "We Invite" && <Globe size={16} />}
                   {link.name}
                 </Link>
               ))}
@@ -136,9 +132,10 @@ const Navbar = () => {
                     location.pathname === link.path
                       ? "text-school-green bg-school-beige"
                       : "text-gray-600 hover:text-school-green hover:bg-gray-50"
-                  }`}
+                  } ${link.highlight ? "flex items-center gap-1" : ""}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
+                  {link.name === "We Invite" && <Globe size={16} />}
                   {link.name}
                 </Link>
               ))}
