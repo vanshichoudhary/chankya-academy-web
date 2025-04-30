@@ -33,32 +33,32 @@ const Home = () => {
 
   const galleryImages = [
     {
-      src: "/placeholder.svg",
+      src: "https://i.ibb.co/DgRq32HX/Whats-App-Image-2025-04-20-at-19-24-54-f92455d1.jpg",
       alt: "School Building",
       caption: "Our Modern Campus"
     },
     {
-      src: "/placeholder.svg",
+      src: "https://i.ibb.co/k23ywT35/unnamed-2.png",
       alt: "Digital Classroom",
       caption: "Smart Digital Classrooms"
     },
     {
-      src: "/placeholder.svg",
+      src: "https://i.ibb.co/Cs66Yx6m/unnamed-1.png",
       alt: "Swimming Pool",
       caption: "International Standard Swimming Pool"
     },
     {
-      src: "/placeholder.svg",
+      src: "https://i.ibb.co/Pvtk8Gbh/Whats-App-Image-2025-04-19-at-06-32-30-e51638c6.jpg",
       alt: "Sports Ground",
       caption: "Expansive Sports Facilities"
     },
     {
-      src: "/placeholder.svg",
+      src: "https://i.ibb.co/6RgcwCF7/unnamed-3.png",
       alt: "Science Lab",
       caption: "Advanced Science Laboratories"
     },
     {
-      src: "/placeholder.svg",
+      src: "https://i.ibb.co/KxPWCRw4/unnamed-4.png",
       alt: "Students in Classroom",
       caption: "Engaged Learning Environment"
     }
@@ -69,7 +69,7 @@ const Home = () => {
       {/* Hero section */}
       <div 
         className="relative min-h-[85vh] flex items-center bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/placeholder.svg')" }}
+        style={{ backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://i.ibb.co/5Wnsmp0p/Whats-App-Image-2025-04-20-at-19-24-51-109faecc.jpg')" }}
       >
         <div className="container mx-auto px-4">
           <div className="max-w-3xl text-white animate-fade-in">
@@ -86,7 +86,7 @@ const Home = () => {
                 </Button>
               </Link>
               <Link to="/official">
-                <Button variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-6 py-6">
+                <Button className="bg-white text-school-green hover:bg-gray-100 border-none text-lg px-6 py-6">
                   Apply for Admission
                 </Button>
               </Link>
@@ -142,7 +142,7 @@ const Home = () => {
             </div>
             <div className="relative">
               <img 
-                src="/placeholder.svg" 
+                src="https://i.ibb.co/y2ZnvYL/Whats-App-Image-2025-04-20-at-19-24-50-89ab4c50.jpg" 
                 alt="Students at Chankya International Academy" 
                 className="rounded-lg shadow-xl w-full h-auto"
               />

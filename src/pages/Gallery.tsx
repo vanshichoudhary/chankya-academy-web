@@ -35,6 +35,8 @@ const GalleryPage = () => {
   ];
 
   const campusImages = [
+    { src: "https://i.ibb.co/DgRq32HX/Whats-App-Image-2025-04-20-at-19-24-54-f92455d1.jpg", alt: "School Building", caption: "Main School Building" },
+    { src: "https://i.ibb.co/5Wnsmp0p/Whats-App-Image-2025-04-20-at-19-24-51-109faecc.jpg", alt: "Main School Building", caption: "Main School Building" },
     { src: "/placeholder.svg", alt: "School Building", caption: "Main School Building" },
     { src: "/placeholder.svg", alt: "Classroom", caption: "Modern Air-Conditioned Classroom" },
     { src: "/placeholder.svg", alt: "Library", caption: "Central Library" },
@@ -55,6 +57,7 @@ const GalleryPage = () => {
   ];
 
   const sportsImages = [
+    { src: "https://i.ibb.co/Cs66Yx6m/unnamed-1.png", alt: "Swimming Pool", caption: "Swimming Competition" },
     { src: "/placeholder.svg", alt: "Cricket Match", caption: "Inter-School Cricket Tournament" },
     { src: "/placeholder.svg", alt: "Swimming", caption: "Swimming Competition" },
     { src: "/placeholder.svg", alt: "Basketball", caption: "Basketball Championship" },
@@ -64,7 +67,7 @@ const GalleryPage = () => {
   ];
 
   const activitiesImages = [
-    { src: "/placeholder.svg", alt: "STEM Workshop", caption: "STEM Learning Workshop" },
+    { src: "https://i.ibb.co/6RgcwCF7/unnamed-3.png", alt: "Science Lab", caption: "STEM Learning Workshop" },
     { src: "/placeholder.svg", alt: "Robotics", caption: "Robotics Competition" },
     { src: "/placeholder.svg", alt: "Debate", caption: "Inter-Class Debate Competition" },
     { src: "/placeholder.svg", alt: "Quiz", caption: "General Knowledge Quiz" },
@@ -73,6 +76,7 @@ const GalleryPage = () => {
   ];
 
   const artsImages = [
+    { src: "https://i.ibb.co/KxPWCRw4/unnamed-4.png", alt: "Art Exhibition", caption: "Student Art Exhibition" },
     { src: "/placeholder.svg", alt: "Dance Performance", caption: "Classical Dance Performance" },
     { src: "/placeholder.svg", alt: "Music Concert", caption: "Annual Music Concert" },
     { src: "/placeholder.svg", alt: "Art Exhibition", caption: "Student Art Exhibition" },
@@ -120,7 +124,7 @@ const GalleryPage = () => {
       <PageHeader 
         title="Gallery" 
         subtitle="Capturing moments and memories from Chankya International Academy" 
-        background="/placeholder.svg"
+        background="https://i.ibb.co/y2ZnvYL/Whats-App-Image-2025-04-20-at-19-24-50-89ab4c50.jpg"
       />
 
       {/* Gallery Introduction */}
