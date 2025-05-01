@@ -38,7 +38,7 @@ const GalleryPage = () => {
     { src: "https://i.ibb.co/DgRq32HX/Whats-App-Image-2025-04-20-at-19-24-54-f92455d1.jpg", alt: "School Building", caption: "Main School Building" },
     { src: "https://i.ibb.co/5Wnsmp0p/Whats-App-Image-2025-04-20-at-19-24-51-109faecc.jpg", alt: "Main School Building", caption: "Main School Building" },
     { src: "/placeholder.svg", alt: "School Building", caption: "Main School Building" },
-    { src: "/placeholder.svg", alt: "Classroom", caption: "Modern Air-Conditioned Classroom" },
+    { src: "https://i.ibb.co/KxPWCRw4/unnamed-4.png", alt: "Classroom", caption: "Modern Air-Conditioned Classroom" },
     { src: "/placeholder.svg", alt: "Library", caption: "Central Library" },
     { src: "/placeholder.svg", alt: "Computer Lab", caption: "State-of-the-Art Computer Lab" },
     { src: "/placeholder.svg", alt: "Science Lab", caption: "Advanced Science Laboratory" },
@@ -48,7 +48,10 @@ const GalleryPage = () => {
   ];
 
   const eventsImages = [
+    { src: "https://i.ibb.co/6RgcwCF7/unnamed-3.png", alt: "Science & Technology Exhibition", caption: "Science & Technology Exhibition" },
     { src: "/placeholder.svg", alt: "Annual Day", caption: "Annual Day Celebration" },
+    { src: "https://i.ibb.co/RGLnMDRc/unnamed-6.png", alt: "Annual Day Celebration", caption: "Annual Day Celebration" },
+    { src: "https://i.ibb.co/39VgXsrt/unnamed-5.png", alt: "Annual Day Celebration", caption: "Annual Day Celebration" },
     { src: "/placeholder.svg", alt: "Science Exhibition", caption: "Science & Technology Exhibition" },
     { src: "/placeholder.svg", alt: "Independence Day", caption: "Independence Day Celebration" },
     { src: "/placeholder.svg", alt: "Teachers Day", caption: "Teachers' Day Function" },
@@ -67,7 +70,8 @@ const GalleryPage = () => {
   ];
 
   const activitiesImages = [
-    { src: "https://i.ibb.co/6RgcwCF7/unnamed-3.png", alt: "Science Lab", caption: "STEM Learning Workshop" },
+    { src: "https://i.ibb.co/hRHNVW7y/unnamed-7.png", alt: "Robotics Competition", caption: "Robotics Competition" },
+    { src: "https://i.ibb.co/KxPWCRw4/unnamed-4.png", alt: "Art Exhibition", caption: "Student Art Exhibition" },
     { src: "/placeholder.svg", alt: "Robotics", caption: "Robotics Competition" },
     { src: "/placeholder.svg", alt: "Debate", caption: "Inter-Class Debate Competition" },
     { src: "/placeholder.svg", alt: "Quiz", caption: "General Knowledge Quiz" },
@@ -76,7 +80,6 @@ const GalleryPage = () => {
   ];
 
   const artsImages = [
-    { src: "https://i.ibb.co/KxPWCRw4/unnamed-4.png", alt: "Art Exhibition", caption: "Student Art Exhibition" },
     { src: "/placeholder.svg", alt: "Dance Performance", caption: "Classical Dance Performance" },
     { src: "/placeholder.svg", alt: "Music Concert", caption: "Annual Music Concert" },
     { src: "/placeholder.svg", alt: "Art Exhibition", caption: "Student Art Exhibition" },
