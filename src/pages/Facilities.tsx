@@ -16,6 +16,7 @@ import {
   BookOpen
 } from "lucide-react";
 
+import Image from "next/image";
 const Facilities = () => {
   const facilities = [
     {
@@ -98,7 +99,7 @@ const Facilities = () => {
       <PageHeader 
         title="Our Facilities" 
         subtitle="State-of-the-art infrastructure designed for holistic education" 
-        background="/placeholder.svg"
+        background="https://i.ibb.co/5WYdRhnY/Whats-App-Image-2025-04-19-at-06-32-35-579786b2.jpg"
       />
 
       {/* Introduction */}
