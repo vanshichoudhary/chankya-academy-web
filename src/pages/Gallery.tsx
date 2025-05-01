@@ -37,7 +37,6 @@ const GalleryPage = () => {
   const campusImages = [
     { src: "https://i.ibb.co/DgRq32HX/Whats-App-Image-2025-04-20-at-19-24-54-f92455d1.jpg", alt: "School Building", caption: "Main School Building" },
     { src: "https://i.ibb.co/5Wnsmp0p/Whats-App-Image-2025-04-20-at-19-24-51-109faecc.jpg", alt: "Main School Building", caption: "Main School Building" },
-    { src: "/placeholder.svg", alt: "School Building", caption: "Main School Building" },
     { src: "https://i.ibb.co/KxPWCRw4/unnamed-4.png", alt: "Classroom", caption: "Modern Air-Conditioned Classroom" },
     { src: "/placeholder.svg", alt: "Library", caption: "Central Library" },
     { src: "/placeholder.svg", alt: "Computer Lab", caption: "State-of-the-Art Computer Lab" },
@@ -82,7 +81,7 @@ const GalleryPage = () => {
   const artsImages = [
     { src: "/placeholder.svg", alt: "Dance Performance", caption: "Classical Dance Performance" },
     { src: "/placeholder.svg", alt: "Music Concert", caption: "Annual Music Concert" },
-    { src: "/placeholder.svg", alt: "Art Exhibition", caption: "Student Art Exhibition" },
+    { src: "https://i.ibb.co/39VgXsrt/unnamed-5.png", alt: "Art Exhibition", caption: "Student Art Exhibition" },
     { src: "/placeholder.svg", alt: "Drama", caption: "Annual Drama Production" },
     { src: "/placeholder.svg", alt: "Cultural Day", caption: "Cultural Day Celebration" },
     { src: "/placeholder.svg", alt: "Literary Festival", caption: "Literary Festival" }

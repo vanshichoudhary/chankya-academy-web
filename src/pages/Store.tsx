@@ -58,7 +58,7 @@ const Store = () => {
       name: "Textbook Set - Grade 1",
       category: "Books",
       price: 1500,
-      image: "/placeholder.svg",
+      image: "https://i.ibb.co/4qwtJss/unnamed-10.png",
       description: "Complete set of textbooks for Grade 1 students as per the curriculum."
     },
     {
@@ -94,7 +94,7 @@ const Store = () => {
       grade: "Grades 6-8",
       fileType: "PDF",
       fileSize: "15 MB",
-      image: "/placeholder.svg",
+      image: "https://i.ibb.co/R1rq4VG/unnamed-9.png",
       description: "Comprehensive study materials for mathematics covering all topics in the curriculum with practice problems and solutions."
     },
     {
@@ -191,7 +191,7 @@ const Store = () => {
       <PageHeader 
         title="School Store" 
         subtitle="Purchase uniforms, books, pay fees, and access free digital resources" 
-        background="/placeholder.svg"
+        background="https://i.ibb.co/y2ZnvYL/Whats-App-Image-2025-04-20-at-19-24-50-89ab4c50.jpg"
       />
 
       {/* Store Introduction */}
@@ -291,13 +291,17 @@ const Store = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {digitalResources.map((resource) => (
                   <Card key={resource.id} className="overflow-hidden">
-                    <div className="h-40 overflow-hidden bg-gray-100 flex items-center justify-center">
-                      {resource.fileType === "PDF" ? (
-                        <FileText size={60} className="text-gray-400" />
-                      ) : (
-                        <Book size={60} className="text-gray-400" />
-                      )}
-                    </div>
+                     <div className="h-40 overflow-hidden bg-gray-100 flex items-center justify-center">
+                        {resource.image ? (
+                          <img src={resource.image} alt={resource.name} className="w-full h-full object-cover" />
+                        ) : (
+                          resource.fileType === "PDF" ? (
+                            <FileText size={60} className="text-gray-400" />
+                          ) : (
+                            <Book size={60} className="text-gray-400" />
+                          )
+                        )}
+                      </div>
                     <CardHeader className="p-4 pb-0">
                       <div className="flex justify-between items-start">
                         <div>

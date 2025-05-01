@@ -40,7 +40,7 @@ const Establishments = () => {
       title: "Uni-pitch & Uniford Backed Programs",
       icon: GraduationCap,
       description: "Innovative educational programs in partnership with Uniford to provide students with global learning opportunities and international certifications.",
-      status: "Coming 2024",
+      status: "Coming 2024", 
       color: "bg-amber-50 text-amber-700"
     },
     {
@@ -90,7 +90,7 @@ const Establishments = () => {
       <PageHeader 
         title="Future Establishments" 
         subtitle="Pioneering new facilities and programs for tomorrow's leaders" 
-        background="/placeholder.svg"
+        background="https://i.ibb.co/y2ZnvYL/Whats-App-Image-2025-04-20-at-19-24-50-89ab4c50.jpg"
       />
 
       {/* Introduction */}
@@ -184,7 +184,7 @@ const Establishments = () => {
             </div>
             <div>
               <img 
-                src="/placeholder.svg" 
+                src="https://i.ibb.co/hRHNVW7y/unnamed-7.png" 
                 alt="STEM and AI Laboratory" 
                 className="rounded-lg shadow-xl w-full h-auto"
               />
@@ -277,7 +277,7 @@ const Establishments = () => {
             <div className="lg:col-span-2">
               <div className="h-full bg-white rounded-lg overflow-hidden shadow-xl border border-gray-200">
                 <img 
-                  src="/placeholder.svg" 
+                  src="https://i.ibb.co/y2ZnvYL/Whats-App-Image-2025-04-20-at-19-24-50-89ab4c50.jpg" 
                   alt="International Partnerships" 
                   className="w-full h-48 object-cover"
                 />
