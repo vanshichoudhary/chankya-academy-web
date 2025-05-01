@@ -78,29 +78,14 @@ const UGIEP = () => {
 
   const successStories = [
     {
-      name: "Delhi Public School",
-      location: "New Delhi",
+      name: "100+ Institutes",
+      location: " 19 + states",
       stage: "All 3 Stages Completed",
       highlight: "Increased student enrollment by 35%",
       quote: "UGIEP has transformed our teaching methodology and brought our institution into the digital age.",
-      image: "/placeholder.svg"
+      image:  "https://i.ibb.co/rRQmxwzT/a-sharktank-like-platform-name-as-uni-pi-M9-H5b-N3-ER9-Ow-PUom-IPFPg-RZdl6w0c-Q46-O1-CH5e-P-j-Jg.jpg"
     },
-    {
-      name: "Sacred Heart Academy",
-      location: "Mumbai",
-      stage: "Stages 1 & 2 Completed",
-      highlight: "National recognition for innovation",
-      quote: "Our students now have access to world-class learning tools and methodologies that prepare them for the future.",
-      image: "/placeholder.svg"
-    },
-    {
-      name: "St. Xavier's School",
-      location: "Kolkata",
-      stage: "Stage 1 Completed",
-      highlight: "Digital transformation complete",
-      quote: "The digital infrastructure implemented has streamlined our administrative processes and enhanced learning experiences.",
-      image: "/placeholder.svg"
-    }
+    
   ];
 
   const technologies = [
@@ -141,7 +126,7 @@ const UGIEP = () => {
       <PageHeader 
         title="UGIEP" 
         subtitle="Uniford Grants for Institutional Empowerment Program" 
-        background="/placeholder.svg"
+        background="https://i.ibb.co/m5Z2PJ7k/a-linkedin-background-banner-for-uniford-with-a-hi-C-0-PW7-KJSM-B-to-Z-l-AYz-Q-b-DOl-OWIRQ4-Sj-F2-YJ.jpg"
       />
       
       {/* Introduction */}
@@ -211,7 +196,7 @@ const UGIEP = () => {
                     
                     <div className="md:w-1/2">
                       <img 
-                        src="/placeholder.svg" 
+                        src="https://i.ibb.co/N2zL9R7N/a-professional-catalog-style-image-with-Dzb-Nbe-Tn-RDio7-Re-Wdnap-A-v-UEDb-JSs-RNORn-Lv-Z25-KWxg.jpg" 
                         alt={`Stage ${stage.stage}: ${stage.title}`}
                         className="rounded-lg shadow-md w-full"
                       />

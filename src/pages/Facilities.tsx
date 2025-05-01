@@ -16,7 +16,6 @@ import {
   BookOpen
 } from "lucide-react";
 
-import Image from "next/image";
 const Facilities = () => {
   const facilities = [
     {
@@ -63,37 +62,37 @@ const Facilities = () => {
 
   const imageGallery = [
     {
-      src: "/placeholder.svg",
+      src: "https://i.ibb.co/KxPWCRw4/unnamed-4.png",
       alt: "AC Classroom",
       caption: "Fully Air-Conditioned Classrooms"
     },
     {
-      src: "/placeholder.svg",
+      src: "https://i.ibb.co/N2zL9R7N/a-professional-catalog-style-image-with-Dzb-Nbe-Tn-RDio7-Re-Wdnap-A-v-UEDb-JSs-RNORn-Lv-Z25-KWxg.jpg",
       alt: "Digital Smart Class",
       caption: "Interactive Digital Smart Classes"
     },
     {
-      src: "/placeholder.svg",
+      src: "https://i.ibb.co/Cs66Yx6m/unnamed-1.png",
       alt: "Swimming Pool",
       caption: "International Standard Swimming Pool"
     },
     {
-      src: "/placeholder.svg",
+      src: "https://i.ibb.co/DgRq32HX/Whats-App-Image-2025-04-20-at-19-24-54-f92455d1.jpg",
       alt: "Sports Ground",
       caption: "Multi-Sport Playground"
     },
     {
-      src: "/placeholder.svg",
+      src: "https://i.ibb.co/hRHNVW7y/unnamed-7.png",
       alt: "Science Laboratory",
       caption: "Advanced Science Laboratories"
     },
     {
-      src: "/placeholder.svg",
+      src: "https://i.ibb.co/5Wnsmp0p/Whats-App-Image-2025-04-20-at-19-24-51-109faecc.jpg",
       alt: "Library",
       caption: "Well-Stocked Modern Library"
     }
   ];
-
+  
   return (
     <div>
       <PageHeader 
@@ -201,7 +200,7 @@ const Facilities = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <img 
-                src="/placeholder.svg" 
+                src="https://i.ibb.co/DgRq32HX/Whats-App-Image-2025-04-20-at-19-24-54-f92455d1.jpg" 
                 alt="Sports Facilities" 
                 className="rounded-lg shadow-xl w-full h-auto"
               />

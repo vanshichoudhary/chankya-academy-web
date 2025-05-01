@@ -25,48 +25,48 @@ const Store = () => {
       id: 1,
       name: "School Uniform (Summer)",
       category: "Uniforms",
-      price: 1200,
-      image: "/placeholder.svg",
+      price: 1200,    
+      image: "/coming-soon.svg",
       description: "Official summer uniform for all students including shirt, pants/skirt, and tie."
     },
     {
       id: 2,
       name: "School Uniform (Winter)",
       category: "Uniforms",
-      price: 1800,
-      image: "/placeholder.svg",
+      price: 1800,    
+      image: "/coming-soon.svg",
       description: "Official winter uniform including sweater, jacket, and full sleeves shirt."
     },
     {
       id: 3,
       name: "Sports Kit",
       category: "Uniforms",
-      price: 950,
-      image: "/placeholder.svg",
+      price: 950,    
+      image: "/coming-soon.svg",
       description: "Sports uniform including track suit, t-shirt, and shorts for physical education classes."
     },
     {
       id: 4,
       name: "School Bag",
       category: "Accessories",
-      price: 850,
-      image: "/placeholder.svg",
+      price: 850,    
+      image: "/coming-soon.svg",
       description: "Durable and ergonomic school bag with the school logo and multiple compartments."
     },
     {
       id: 5,
       name: "Textbook Set - Grade 1",
       category: "Books",
-      price: 1500,
-      image: "https://i.ibb.co/4qwtJss/unnamed-10.png",
+      price: 1500,    
+      image: "/coming-soon.svg",
       description: "Complete set of textbooks for Grade 1 students as per the curriculum."
     },
     {
       id: 6,
       name: "Textbook Set - Grade 2",
       category: "Books",
-      price: 1600,
-      image: "/placeholder.svg",
+      price: 1600,    
+      image: "/coming-soon.svg",
       description: "Complete set of textbooks for Grade 2 students as per the curriculum."
     },
     {
@@ -74,15 +74,15 @@ const Store = () => {
       name: "School Shoes",
       category: "Accessories",
       price: 750,
-      image: "/placeholder.svg",
+      image: "/coming-soon.svg",
       description: "Black school shoes that comply with the uniform requirements."
     },
     {
       id: 8,
       name: "Stationery Kit",
       category: "Accessories",
-      price: 450,
-      image: "/placeholder.svg",
+      price: 450,    
+      image: "/coming-soon.svg",
       description: "Essential stationery items including notebooks, pens, pencils, and geometry box."
     }
   ];
@@ -566,7 +566,7 @@ const Store = () => {
               </div>
               <div className="hidden lg:block relative">
                 <img 
-                  src="/placeholder.svg" 
+                  src="/coming-soon.svg" 
                   alt="School Store" 
                   className="absolute inset-0 w-full h-full object-cover"
                 />

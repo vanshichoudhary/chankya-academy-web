@@ -112,7 +112,7 @@ const CIAOfficial = () => {
       <PageHeader 
         title="CIA Official" 
         subtitle="Access official documents, forms, and information" 
-        background="/placeholder.svg"
+        background="https://i.ibb.co/y2ZnvYL/Whats-App-Image-2025-04-20-at-19-24-50-89ab4c50.jpg"
       />
 
       {/* Downloads Section */}

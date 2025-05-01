@@ -11,12 +11,12 @@ import { Rocket, Lightbulb, ShieldCheck, FileText } from "lucide-react";
 const WeInvite = () => {
   // Sample gallery images for the gallery section
   const galleryImages = [
-    { src: "/placeholder.svg", alt: "International Collaboration", caption: "Students from 5 countries working on climate solutions" },
-    { src: "/placeholder.svg", alt: "Innovation Workshop", caption: "Innovation workshop with tech industry partners" },
-    { src: "/placeholder.svg", alt: "Environmental Initiative", caption: "Tree planting initiative with local community" },
-    { src: "/placeholder.svg", alt: "Cultural Exchange", caption: "Cultural exchange program with visiting delegates" },
-    { src: "/placeholder.svg", alt: "Student Leadership", caption: "Youth leadership summit hosted at Chankya Academy" },
-    { src: "/placeholder.svg", alt: "Community Service", caption: "Students leading literacy program in rural communities" }
+    { src: "https://i.ibb.co/N2zL9R7N/a-professional-catalog-style-image-with-Dzb-Nbe-Tn-RDio7-Re-Wdnap-A-v-UEDb-JSs-RNORn-Lv-Z25-KWxg.jpg", alt: "International Collaboration", caption: "Students from 5 countries working on climate solutions" },
+    { src: "https://i.ibb.co/hRHNVW7y/unnamed-7.png", alt: "Innovation Workshop", caption: "Innovation workshop with tech industry partners" },
+    { src: "https://i.ibb.co/KxPWCRw4/unnamed-4.png", alt: "Environmental Initiative", caption: "Tree planting initiative with local community" },
+    { src: "https://i.ibb.co/6RgcwCF7/unnamed-3.png", alt: "Cultural Exchange", caption: "Cultural exchange program with visiting delegates" },
+    { src: "https://i.ibb.co/y2ZnvYL/Whats-App-Image-2025-04-20-at-19-24-50-89ab4c50.jpg", alt: "Student Leadership", caption: "Youth leadership summit hosted at Chankya Academy" },
+    { src: "https://i.ibb.co/Cs66Yx6m/unnamed-1.png", alt: "Community Service", caption: "Students leading literacy program in rural communities" }
   ];
 
   return (
@@ -24,7 +24,7 @@ const WeInvite = () => {
       <PageHeader 
         title="We Invite" 
         subtitle="Join our mission to empower the next generation through global collaboration"
-        background="/placeholder.svg"
+        background="https://i.ibb.co/y2ZnvYL/Whats-App-Image-2025-04-20-at-19-24-50-89ab4c50.jpg"
       />
       
       {/* New Collaboration Journey Component */}
@@ -43,8 +43,8 @@ const WeInvite = () => {
             {/* Phase 1: Foundation */}
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
-                <img 
-                  src="/placeholder.svg" 
+                <img
+                  src="https://i.ibb.co/DgRq32HX/Whats-App-Image-2025-04-20-at-19-24-54-f92455d1.jpg" 
                   alt="Foundation" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -66,8 +66,8 @@ const WeInvite = () => {
             {/* Phase 2: Innovation */}
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
-                <img 
-                  src="/placeholder.svg" 
+                <img
+                  src="https://i.ibb.co/KxPWCRw4/unnamed-4.png" 
                   alt="Innovation" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -82,7 +82,7 @@ const WeInvite = () => {
                 </p>
                 <Button variant="outline" className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white">
                   Discover Our Programs
-                </Button>
+                    </Button>
               </div>
             </div>
             
@@ -90,7 +90,7 @@ const WeInvite = () => {
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="/placeholder.svg" 
+                  src="https://i.ibb.co/N2zL9R7N/a-professional-catalog-style-image-with-Dzb-Nbe-Tn-RDio7-Re-Wdnap-A-v-UEDb-JSs-RNORn-Lv-Z25-KWxg.jpg" 
                   alt="Global Impact" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -125,7 +125,7 @@ const WeInvite = () => {
             {/* 2024: Strengthen Partnerships */}
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
-                <img 
+                <img
                   src="/placeholder.svg" 
                   alt="Partnerships" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
