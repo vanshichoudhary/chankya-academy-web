@@ -7,7 +7,7 @@ const WhatsAppChat = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleWhatsAppClick = () => {
-    window.open("https://wa.me/919876543210?text=Hello%2C%20I%20have%20a%20question%20about%20Chankya%20International%20Academy", "_blank");
+    window.open("https://wa.me/917017608009?text=Hello%2C%20I%20have%20a%20question%20about%20Chankya%20International%20Academy", "_blank");
   };
 
   return (

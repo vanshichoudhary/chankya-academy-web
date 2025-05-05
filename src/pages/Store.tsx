@@ -527,8 +527,8 @@ const Store = () => {
                   For inquiries about orders or delivery, please contact:
                   <br />
                   <span className="font-medium">store@chankyaacademy.edu</span>
-                  <br />
-                  <span className="font-medium">+91 9876543210</span>
+                   <br />
+                  <span className="font-medium">+91 70176 08009</span>
                 </p>
               </div>
             </div>
