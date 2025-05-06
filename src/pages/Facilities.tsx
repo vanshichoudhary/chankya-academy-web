@@ -176,7 +176,7 @@ const Facilities = () => {
               </div>
             </div>
             <div>
-              <VideoPlayer videoId="dQw4w9WgXcQ" title="STEM Learning at CIA" />
+              <VideoPlayer videoId="PE5ZD_ui4L4" title="STEM Learning at CIA" />
             </div>
           </div>
         </div>

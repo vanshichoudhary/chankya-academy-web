@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -15,14 +15,11 @@ const Footer = () => {
               <a href="#" className="text-white hover:text-school-gold transition-colors">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-white hover:text-school-gold transition-colors">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="text-white hover:text-school-gold transition-colors">
+              <a href="https://www.instagram.com/ciarampur?igsh=MjVhcDQweXVmOW16" className="text-white hover:text-school-gold transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-white hover:text-school-gold transition-colors">
-                <Youtube size={20} />
+              <a href="https://www.linkedin.com/company/chankya-international-academy/" className="text-white hover:text-school-gold transition-colors">
+                <Linkedin size={20} />
               </a>
             </div>
           </div>
@@ -63,7 +60,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Mail size={18} className="mr-2 flex-shrink-0" />
-                <span className="text-gray-300">info@chankyaacademy.edu</span>
+                <span className="text-gray-300">chanakyainternationalacademy23@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -90,7 +87,7 @@ const Footer = () => {
 
         <div className="mt-8 pt-8 border-t border-gray-600 text-center">
           <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} Chankya International Academy. All rights reserved.
+          @2024 - All Right Reserved. Designed and Developed by <a href="https://scholar.uniford.org/uirad" className="text-white hover:text-school-gold">UIRAD</a>
           </p>
         </div>
       </div>

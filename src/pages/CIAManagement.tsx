@@ -120,7 +120,7 @@ const managementTeam = [
     education: "Ph.D. in Education, MBA",
     description: "Dr. Rajiv Kumar brings over 25 years of experience in educational leadership. His vision and commitment to excellence have been instrumental in establishing Chankya International Academy as a premier educational institution.",
     socialLinks: {
-      email: "chairman@chankyaacademy.edu",
+      email: "chanakyainternationalacademy23@gmail.com",
       linkedin: "#",
       twitter: "#"
     }
@@ -132,7 +132,7 @@ const managementTeam = [
     education: "M.Ed., M.Phil. in Educational Leadership",
     description: "Mrs. Sunita Sharma oversees the day-to-day operations of the school, curriculum development, and strategic planning. Her innovative approach to education has transformed the learning experience at CIA.",
     socialLinks: {
-      email: "director@chankyaacademy.edu",
+      email: "chanakyainternationalacademy23@gmail.com",
       linkedin: "#",
       twitter: "#"
     }

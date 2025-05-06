@@ -42,11 +42,11 @@ const Navbar = () => {
             <div className="flex items-center space-x-4">
               <div className="flex items-center text-sm">
                 <Phone size={14} className="mr-1" />
-                <span>+91 9876543210</span>
+                <span>+91 70176 08009</span>
               </div>
               <div className="flex items-center text-sm">
                 <Mail size={14} className="mr-1" />
-                <span>admissions@chankyaacademy.edu</span>
+                <span>chanakyainternationalacademy23@gmail.com</span>
               </div>
             </div>
             <div className="flex items-center text-sm">
@@ -96,7 +96,7 @@ const Navbar = () => {
             {/* Admission button */}
             <div className="hidden md:block">
               <a 
-                href="https://wa.me/919876543210?text=Hello%2C%20I%20am%20interested%20in%20admission%20to%20Chankya%20International%20Academy" 
+                href="https://wa.me/917017608009?text=Hello%2C%20I%20am%20interested%20in%20admission%20to%20Chankya%20International%20Academy" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -141,7 +141,7 @@ const Navbar = () => {
               ))}
               <div className="pt-2 pb-3">
                 <a 
-                  href="https://wa.me/919876543210?text=Hello%2C%20I%20am%20interested%20in%20admission%20to%20Chankya%20International%20Academy" 
+                  href="https://wa.me/917017608009?text=Hello%2C%20I%20am%20interested%20in%20admission%20to%20Chankya%20International%20Academy" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="block w-full"

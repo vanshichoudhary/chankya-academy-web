@@ -44,7 +44,7 @@ const WeInvite = () => {
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
                 <img
-                  src="https://i.ibb.co/DgRq32HX/Whats-App-Image-2025-04-20-at-19-24-54-f92455d1.jpg" 
+                  src="https://i.ibb.co/y2ZnvYL/Whats-App-Image-2025-04-20-at-19-24-50-89ab4c50.jpg" 
                   alt="Foundation" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -126,7 +126,7 @@ const WeInvite = () => {
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
                 <img
-                  src="/placeholder.svg" 
+                  src="https://i.ibb.co/N2zL9R7N/a-professional-catalog-style-image-with-Dzb-Nbe-Tn-RDio7-Re-Wdnap-A-v-UEDb-JSs-RNORn-Lv-Z25-KWxg.jpg" 
                   alt="Partnerships" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -146,7 +146,7 @@ const WeInvite = () => {
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="/placeholder.svg" 
+                  src="https://i.ibb.co/KxPWCRw4/unnamed-4.png" 
                   alt="Innovation Hubs" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -166,7 +166,7 @@ const WeInvite = () => {
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="/placeholder.svg" 
+                  src="https://i.ibb.co/y2ZnvYL/Whats-App-Image-2025-04-20-at-19-24-50-89ab4c50.jpg" 
                   alt="Global Network" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -199,7 +199,7 @@ const WeInvite = () => {
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="/placeholder.svg" 
+                  src="https://i.ibb.co/KxPWCRw4/unnamed-4.png" 
                   alt="Enhanced Learning" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -219,7 +219,7 @@ const WeInvite = () => {
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="/placeholder.svg" 
+                  src="https://i.ibb.co/6RgcwCF7/unnamed-3.png" 
                   alt="Cultural Exchange" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -239,7 +239,7 @@ const WeInvite = () => {
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="/placeholder.svg" 
+                  src="https://i.ibb.co/N2zL9R7N/a-professional-catalog-style-image-with-Dzb-Nbe-Tn-RDio7-Re-Wdnap-A-v-UEDb-JSs-RNORn-Lv-Z25-KWxg.jpg" 
                   alt="Global Network" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -272,7 +272,7 @@ const WeInvite = () => {
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="/placeholder.svg" 
+                  src="https://i.ibb.co/39VgXsrt/unnamed-5.png" 
                   alt="Partnership Brochure" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -295,7 +295,7 @@ const WeInvite = () => {
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="/placeholder.svg" 
+                  src="https://i.ibb.co/RGLnMDRc/unnamed-6.png" 
                   alt="Collaboration Guidelines" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -318,7 +318,7 @@ const WeInvite = () => {
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="/placeholder.svg" 
+                  src="https://i.ibb.co/39VgXsrt/unnamed-5.png" 
                   alt="Application Form" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -354,7 +354,7 @@ const WeInvite = () => {
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="/placeholder.svg" 
+                  src="https://i.ibb.co/KxPWCRw4/unnamed-4.png" 
                   alt="Board 1" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -374,7 +374,7 @@ const WeInvite = () => {
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="/placeholder.svg" 
+                  src="https://i.ibb.co/hRHNVW7y/unnamed-7.png" 
                   alt="Board 2" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -394,7 +394,7 @@ const WeInvite = () => {
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="/placeholder.svg" 
+                  src="https://i.ibb.co/6RgcwCF7/unnamed-3.png" 
                   alt="Board 3" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -440,16 +440,25 @@ const WeInvite = () => {
         </div>
       </section>
       
-      {/* Call to Action Section */}
-      <section className="py-24 bg-gradient-to-r from-school-green to-school-brown text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-serif font-bold mb-8">Ready to Collaborate?</h2>
-          <p className="text-xl mb-12 opacity-90">
-            Join us in shaping the future of education through global partnerships and innovative initiatives.
-          </p>
-          <Button className="bg-white text-school-green hover:bg-gray-100 hover:text-school-brown">
-            Get Started
-          </Button>
+ {/* Ready to Make a Difference Component */}
+ <section className="py-24 bg-gradient-to-r from-school-green to-school-brown text-white">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
+          <div className="md:w-1/2 text-center md:text-left md:pr-12">
+            <h2 className="text-4xl font-serif font-bold mb-8">Ready to Make a Difference?</h2>
+            <p className="text-xl mb-12 opacity-90">
+              Join our global network of partners who are shaping the future of education through innovative collaboration and shared vision.
+            </p>
+            <Button className="bg-white text-school-green hover:bg-gray-100 hover:text-school-brown">
+              Become a Partner
+            </Button>
+          </div>
+          <div className="md:w-1/2 mt-8 md:mt-0">
+            <img
+              src="https://i.ibb.co/prBXQPtq/Whats-App-Image-2025-04-20-at-19-24-50-89ab4c50.jpg"
+              alt="Collaboration"
+          className="w-full h-auto rounded-lg shadow-lg"
+            />
+          </div>
         </div>
       </section>
     </div>

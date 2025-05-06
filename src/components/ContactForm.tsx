@@ -64,6 +64,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
 
   function onSubmit(values: FormValues) {
     console.log(values);
+    // Here you would typically send the email, e.g., using a serverless function or API
     toast({
       title: "Form submitted!",
       description: "We've received your message and will get back to you soon.",

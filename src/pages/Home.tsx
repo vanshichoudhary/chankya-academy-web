@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import SectionTitle from "@/components/SectionTitle";
 import Gallery from "@/components/Gallery";
 import VideoPlayer from "@/components/VideoPlayer";
@@ -81,14 +80,14 @@ const Home = () => {
             </p>
             <div className="flex flex-wrap gap-4">
               <Link to="/facilities">
-                <Button className="bg-school-gold hover:bg-school-brown text-white text-lg px-6 py-6">
+                <button className="bg-school-gold hover:bg-school-brown text-white text-lg px-6 py-6 rounded-md">
                   Explore Our Facilities
-                </Button>
+                </button>
               </Link>
               <Link to="/official">
-                <Button className="bg-white text-school-green hover:bg-gray-100 border-none text-lg px-6 py-6">
+                <button className="bg-white text-school-green hover:bg-gray-100 border-none text-lg px-6 py-6 rounded-md">
                   Apply for Admission
-                </Button>
+                </button>
               </Link>
             </div>
           </div>
@@ -135,9 +134,9 @@ const Home = () => {
                 </li>
               </ul>
               <Link to="/about">
-                <Button className="bg-school-green hover:bg-school-brown text-white">
+                <button className="bg-school-green hover:bg-school-brown text-white px-4 py-2 rounded-md">
                   Learn More About Us <ArrowRight size={16} className="ml-2" />
-                </Button>
+                </button>
               </Link>
             </div>
             <div className="relative">
@@ -185,8 +184,8 @@ const Home = () => {
             subtitle="Take a virtual tour of our campus and see what makes us special."
             center
           />
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
-            <VideoPlayer videoId="dQw4w9WgXcQ" title="School Virtual Tour" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12 items-center">
+            <VideoPlayer videoId="0PapbDKfYmk" title="School Virtual Tour" />
             <div className="flex flex-col justify-center">
               <h3 className="text-2xl font-serif font-bold text-school-green mb-4">
                 Virtual Tour of Our Campus
@@ -213,9 +212,9 @@ const Home = () => {
                 </div>
               </div>
               <Link to="/gallery">
-                <Button className="bg-school-green hover:bg-school-brown text-white">
+                <button className="bg-school-green hover:bg-school-brown text-white px-4 py-2 rounded-md">
                   View More Videos
-                </Button>
+                </button>
               </Link>
             </div>
           </div>
@@ -233,9 +232,9 @@ const Home = () => {
           <Gallery images={galleryImages} />
           <div className="text-center mt-10">
             <Link to="/gallery">
-              <Button variant="outline" className="border-school-green text-school-green hover:bg-school-green hover:text-white">
+              <button className="border-school-green text-school-green hover:bg-school-green hover:text-white px-4 py-2 rounded-md">
                 View Complete Gallery
-              </Button>
+              </button>
             </Link>
           </div>
         </div>
@@ -329,7 +328,7 @@ const Home = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-lg mb-1">Email Us</h4>
-                    <p className="text-gray-600">admissions@chankyaacademy.edu</p>
+                    <p className="text-gray-600">chanakyainternationalacademy23@gmail.com</p>
                   </div>
                 </div>
               </div>

@@ -86,12 +86,12 @@ const GalleryPage = () => {
   ];
 
   const videos = [
-    { id: "dQw4w9WgXcQ", title: "School Campus Tour" },
-    { id: "dQw4w9WgXcQ", title: "Annual Day Highlights" },
-    { id: "dQw4w9WgXcQ", title: "Sports Day Celebrations" },
-    { id: "dQw4w9WgXcQ", title: "STEM Learning Activities" },
-    { id: "dQw4w9WgXcQ", title: "Cultural Performances" },
-    { id: "dQw4w9WgXcQ", title: "A Day at Chankya Academy" }
+    { id: "0PapbDKfYmk", title: "School Campus Tour" },
+    { id: "PE5ZD_ui4L4", title: "Annual Day Highlights" },
+    { id: "PE5ZD_ui4L4", title: "Sports Day Celebrations" },
+    { id: "0PapbDKfYmk", title: "STEM Learning Activities" },
+    { id: "PE5ZD_ui4L4", title: "Cultural Performances" },
+    { id: "0PapbDKfYmk", title: "A Day at Chankya Academy" }
   ];
 
   // Filter images based on active category
