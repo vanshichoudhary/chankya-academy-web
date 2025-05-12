@@ -207,10 +207,10 @@ const Career = () => {
       <PageHeader 
         title="Find Your Next Role. Build a Career That Matters." 
         subtitle="View open roles, apply directly, and unlock your full potential with us at Chankya International Academy."
-        showCta 
+        showCta={true}
         ctaText="View Open Roles"
         ctaLink="#opportunities"
-        backgroundImage="/images/career-bg.jpg"
+        background="/images/career-bg.jpg"
       />
 
       {/* Filterable Opportunity Grid */}
