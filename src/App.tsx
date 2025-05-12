@@ -17,6 +17,7 @@ import Payment from "./pages/Payment";
 import Legal from "./pages/Legal";
 import WeInvite from "./pages/WeInvite";
 import Career from "./pages/Career";
+import YLC from "./pages/YLC";
 import NotFound from "./pages/NotFound";
 
 // Create a client
@@ -43,6 +44,7 @@ const App: React.FC = () => {
                 <Route path="legal" element={<Legal />} />
                 <Route path="we-invite" element={<WeInvite />} />
                 <Route path="career" element={<Career />} />
+                <Route path="ylc" element={<YLC />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>
