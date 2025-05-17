@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Phone, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -64,10 +64,6 @@ const Footer = () => {
                 <Phone size={18} className="mr-2 flex-shrink-0" />
                 <span className="text-gray-300">+91 70176 08009</span>
               </li>
-              <li className="flex items-center">
-                <Mail size={18} className="mr-2 flex-shrink-0" />
-                <span className="text-gray-300">chanakyainternationalacademy23@gmail.com</span>
-              </li>
             </ul>
           </div>
 
@@ -75,6 +71,9 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-medium mb-4">Legal</h3>
             <ul className="space-y-2">
+              <li>
+                <Link to="/legal" className="text-gray-300 hover:text-white transition-colors">Legal Information</Link>
+              </li>
               <li>
                 <Link to="/legal#privacy" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</Link>
               </li>
@@ -86,6 +85,9 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/legal#refund" className="text-gray-300 hover:text-white transition-colors">Refund Policy</Link>
+              </li>
+              <li>
+                <Link to="/legal#trust" className="text-gray-300 hover:text-white transition-colors">Trust Information</Link>
               </li>
               <li>
                 <Link to="/we-invite" className="text-gray-300 hover:text-white transition-colors">We Invite</Link>
