@@ -4,6 +4,7 @@ import SectionTitle from "@/components/SectionTitle";
 import Gallery from "@/components/Gallery";
 import VideoPlayer from "@/components/VideoPlayer";
 import ContactForm from "@/components/ContactForm";
+import TrustSection from "@/components/TrustSection";
 import { Check, GraduationCap, BookOpen, Building, Users, Award, ArrowRight, MapPin, Phone, Mail } from "lucide-react";
 
 const Home = () => {
@@ -94,6 +95,9 @@ const Home = () => {
         </div>
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent h-28"></div>
       </div>
+
+      {/* Trust Section - New Addition */}
+      <TrustSection />
 
       {/* Welcome section */}
       <section className="py-16 md:py-24 bg-school-beige">
