@@ -1,9 +1,33 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { Building, Award, FileText, Users, ArrowRight, Shield, Star } from "lucide-react";
+import { Building, Award, FileText, Users, ArrowRight, Shield, Star, FileCheck, Info, HelpCircle } from "lucide-react";
 import SectionTitle from "@/components/SectionTitle";
 import { Button } from "@/components/ui/button";
+import Gallery from "@/components/Gallery";
+
+const trustImages = [
+  {
+    src: "https://i.ibb.co/5Wnsmp0p/Whats-App-Image-2025-04-20-at-19-24-51-109faecc.jpg",
+    alt: "Baba Akhand Bharat Trust Headquarters",
+    caption: "Trust Headquarters"
+  },
+  {
+    src: "https://i.ibb.co/ZSQKxR7/trust-members.jpg",
+    alt: "Trust Board Members",
+    caption: "Trust Board Meeting"
+  },
+  {
+    src: "https://i.ibb.co/XpP7hv3/trust-certificate.jpg",
+    alt: "Trust Registration Certificate",
+    caption: "Registration Certificate"
+  },
+  {
+    src: "https://i.ibb.co/7jSXLh5/trust-school.jpg",
+    alt: "School Building",
+    caption: "Chankya International Academy"
+  }
+];
 
 const TrustSection = () => {
   return (
@@ -13,7 +37,7 @@ const TrustSection = () => {
       <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-purple-100/50 blur-3xl"></div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
           <div className="animate-fade-in">
             <div className="inline-flex items-center rounded-full bg-indigo-100/80 px-3 py-1 text-sm font-medium text-indigo-800 mb-6">
               <Shield className="h-4 w-4 mr-1 text-indigo-700" /> Our Founding Organization
@@ -78,7 +102,7 @@ const TrustSection = () => {
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
                     <div className="bg-indigo-100 p-2 rounded-full">
-                      <FileText className="h-5 w-5 text-indigo-700" />
+                      <FileCheck className="h-5 w-5 text-indigo-700" />
                     </div>
                   </div>
                   <div className="ml-4">
@@ -89,12 +113,20 @@ const TrustSection = () => {
               </div>
             </div>
             
-            <Link to="/legal#trust">
-              <Button className="bg-indigo-600 hover:bg-indigo-700 text-white flex items-center group">
-                Learn More About The Trust 
-                <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
+            <div className="flex flex-wrap gap-4">
+              <Link to="/legal#trust">
+                <Button className="bg-indigo-600 hover:bg-indigo-700 text-white flex items-center group">
+                  Learn More About The Trust 
+                  <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+              <Link to="/legal#compliance">
+                <Button variant="outline" className="border-indigo-600 text-indigo-600 hover:bg-indigo-50 flex items-center group">
+                  View Compliance Documents
+                  <Info size={16} className="ml-2 group-hover:rotate-12 transition-transform" />
+                </Button>
+              </Link>
+            </div>
           </div>
           
           <div className="relative animate-fade-in">
@@ -111,6 +143,24 @@ const TrustSection = () => {
               </div>
               <p>Serving education with excellence</p>
             </div>
+          </div>
+        </div>
+
+        {/* Gallery Section */}
+        <div className="mt-12 pt-6 border-t border-indigo-100">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-serif font-bold text-gray-800">Trust Gallery</h3>
+            <p className="text-gray-600 mt-2">Visual journey through our trust's initiatives and achievements</p>
+          </div>
+          <Gallery images={trustImages} columns={4} />
+          
+          <div className="flex justify-center mt-10">
+            <Link to="/legal#gallery">
+              <Button variant="outline" className="border-indigo-600 text-indigo-600 hover:bg-indigo-50 flex items-center group">
+                View More Images
+                <HelpCircle size={16} className="ml-2 opacity-70" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

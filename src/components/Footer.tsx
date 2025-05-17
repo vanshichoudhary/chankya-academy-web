@@ -90,7 +90,7 @@ const Footer = () => {
                 <Link to="/legal#trust" className="text-gray-300 hover:text-white transition-colors">Trust Information</Link>
               </li>
               <li>
-                <Link to="/we-invite" className="text-gray-300 hover:text-white transition-colors">We Invite</Link>
+                <Link to="/legal#compliance" className="text-gray-300 hover:text-white transition-colors">Compliance Documents</Link>
               </li>
             </ul>
           </div>
