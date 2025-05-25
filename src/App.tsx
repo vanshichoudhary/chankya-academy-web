@@ -35,6 +35,7 @@ const App: React.FC = () => {
               <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
                 <Route path="facilities" element={<Facilities />} />
+                <Route path="official" element={<CIAOfficial />} />
                 <Route path="cia-official" element={<CIAOfficial />} />
                 <Route path="ugiep" element={<UGIEP />} />
                 <Route path="establishments" element={<Establishments />} />
