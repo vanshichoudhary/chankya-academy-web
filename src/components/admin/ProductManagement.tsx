@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -85,7 +84,8 @@ const ProductManagement = () => {
       
       const productsWithCategory = (data || []).map(product => ({
         ...product,
-        category_name: product.categories?.name || 'No Category'
+        category_name: product.categories?.name || 'No Category',
+        status: product.status as 'active' | 'inactive' // Type assertion to fix the type issue
       }));
       
       setProducts(productsWithCategory);
