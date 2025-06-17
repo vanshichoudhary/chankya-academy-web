@@ -9,104 +9,97 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Plus, Edit, Trash2, Search, Filter } from "lucide-react";
+import { Plus, Edit, Trash2, Search } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 interface Product {
-  id: number;
+  id: string;
   name: string;
-  category: string;
+  category_id: string;
+  category_name?: string;
   price: number;
-  description: string;
-  image: string;
+  description: string | null;
+  image_url: string | null;
   stock: number;
   status: 'active' | 'inactive';
 }
 
+interface Category {
+  id: string;
+  name: string;
+  description: string | null;
+}
+
 const ProductManagement = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
+  const [loading, setLoading] = useState(true);
 
   // Form state
   const [formData, setFormData] = useState({
     name: "",
-    category: "",
+    category_id: "",
     price: "",
     description: "",
-    image: "",
+    image_url: "",
     stock: "",
     status: "active"
   });
 
-  const categories = ["Uniforms", "Books", "Accessories", "Sports", "Stationery"];
-
-  // Initialize with sample data
-  useEffect(() => {
-    const sampleProducts: Product[] = [
-      {
-        id: 1,
-        name: "School Uniform (Summer)",
-        category: "Uniforms",
-        price: 1200,
-        image: "/coming-soon.svg",
-        description: "Official summer uniform for all students including shirt, pants/skirt, and tie.",
-        stock: 50,
-        status: "active"
-      },
-      {
-        id: 2,
-        name: "School Uniform (Winter)",
-        category: "Uniforms",
-        price: 1800,
-        image: "/coming-soon.svg",
-        description: "Official winter uniform including sweater, jacket, and full sleeves shirt.",
-        stock: 30,
-        status: "active"
-      },
-      {
-        id: 3,
-        name: "Sports Kit",
-        category: "Uniforms",
-        price: 950,
-        image: "/coming-soon.svg",
-        description: "Sports uniform including track suit, t-shirt, and shorts for physical education classes.",
-        stock: 25,
-        status: "active"
-      },
-      {
-        id: 4,
-        name: "School Bag",
-        category: "Accessories",
-        price: 850,
-        image: "/coming-soon.svg",
-        description: "Durable and ergonomic school bag with the school logo and multiple compartments.",
-        stock: 40,
-        status: "active"
-      },
-      {
-        id: 5,
-        name: "Textbook Set - Grade 1",
-        category: "Books",
-        price: 1500,
-        image: "/coming-soon.svg",
-        description: "Complete set of textbooks for Grade 1 students as per the curriculum.",
-        stock: 15,
-        status: "active"
-      }
-    ];
-
-    const storedProducts = localStorage.getItem("admin_products");
-    if (storedProducts) {
-      setProducts(JSON.parse(storedProducts));
-    } else {
-      setProducts(sampleProducts);
-      localStorage.setItem("admin_products", JSON.stringify(sampleProducts));
+  // Fetch categories
+  const fetchCategories = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('categories')
+        .select('*')
+        .order('name');
+      
+      if (error) throw error;
+      setCategories(data || []);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      toast.error('Failed to fetch categories');
     }
+  };
+
+  // Fetch products with category names
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('products')
+        .select(`
+          *,
+          categories(name)
+        `)
+        .order('created_at', { ascending: false });
+      
+      if (error) throw error;
+      
+      const productsWithCategory = (data || []).map(product => ({
+        ...product,
+        category_name: product.categories?.name || 'No Category'
+      }));
+      
+      setProducts(productsWithCategory);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      toast.error('Failed to fetch products');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+    fetchProducts();
   }, []);
 
   // Filter products based on search and category
@@ -116,12 +109,12 @@ const ProductManagement = () => {
     if (searchTerm) {
       filtered = filtered.filter(product =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchTerm.toLowerCase())
+        (product.description && product.description.toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
 
     if (categoryFilter !== "all") {
-      filtered = filtered.filter(product => product.category === categoryFilter);
+      filtered = filtered.filter(product => product.category_id === categoryFilter);
     }
 
     setFilteredProducts(filtered);
@@ -130,78 +123,96 @@ const ProductManagement = () => {
   const resetForm = () => {
     setFormData({
       name: "",
-      category: "",
+      category_id: "",
       price: "",
       description: "",
-      image: "",
+      image_url: "",
       stock: "",
       status: "active"
     });
   };
 
-  const handleAddProduct = () => {
-    const newProduct: Product = {
-      id: Date.now(),
-      name: formData.name,
-      category: formData.category,
-      price: parseFloat(formData.price),
-      description: formData.description,
-      image: formData.image || "/coming-soon.svg",
-      stock: parseInt(formData.stock),
-      status: formData.status as 'active' | 'inactive'
-    };
+  const handleAddProduct = async () => {
+    try {
+      const { error } = await supabase
+        .from('products')
+        .insert({
+          name: formData.name,
+          category_id: formData.category_id || null,
+          price: parseFloat(formData.price),
+          description: formData.description || null,
+          image_url: formData.image_url || '/coming-soon.svg',
+          stock: parseInt(formData.stock),
+          status: formData.status as 'active' | 'inactive'
+        });
 
-    const updatedProducts = [...products, newProduct];
-    setProducts(updatedProducts);
-    localStorage.setItem("admin_products", JSON.stringify(updatedProducts));
-    
-    setIsAddModalOpen(false);
-    resetForm();
-    toast.success("Product added successfully!");
+      if (error) throw error;
+
+      await fetchProducts();
+      setIsAddModalOpen(false);
+      resetForm();
+      toast.success("Product added successfully!");
+    } catch (error) {
+      console.error('Error adding product:', error);
+      toast.error('Failed to add product');
+    }
   };
 
-  const handleEditProduct = () => {
+  const handleEditProduct = async () => {
     if (!editingProduct) return;
 
-    const updatedProduct: Product = {
-      ...editingProduct,
-      name: formData.name,
-      category: formData.category,
-      price: parseFloat(formData.price),
-      description: formData.description,
-      image: formData.image || "/coming-soon.svg",
-      stock: parseInt(formData.stock),
-      status: formData.status as 'active' | 'inactive'
-    };
+    try {
+      const { error } = await supabase
+        .from('products')
+        .update({
+          name: formData.name,
+          category_id: formData.category_id || null,
+          price: parseFloat(formData.price),
+          description: formData.description || null,
+          image_url: formData.image_url || '/coming-soon.svg',
+          stock: parseInt(formData.stock),
+          status: formData.status as 'active' | 'inactive'
+        })
+        .eq('id', editingProduct.id);
 
-    const updatedProducts = products.map(p => 
-      p.id === editingProduct.id ? updatedProduct : p
-    );
-    
-    setProducts(updatedProducts);
-    localStorage.setItem("admin_products", JSON.stringify(updatedProducts));
-    
-    setIsEditModalOpen(false);
-    setEditingProduct(null);
-    resetForm();
-    toast.success("Product updated successfully!");
+      if (error) throw error;
+
+      await fetchProducts();
+      setIsEditModalOpen(false);
+      setEditingProduct(null);
+      resetForm();
+      toast.success("Product updated successfully!");
+    } catch (error) {
+      console.error('Error updating product:', error);
+      toast.error('Failed to update product');
+    }
   };
 
-  const handleDeleteProduct = (id: number) => {
-    const updatedProducts = products.filter(p => p.id !== id);
-    setProducts(updatedProducts);
-    localStorage.setItem("admin_products", JSON.stringify(updatedProducts));
-    toast.success("Product deleted successfully!");
+  const handleDeleteProduct = async (id: string) => {
+    try {
+      const { error } = await supabase
+        .from('products')
+        .delete()
+        .eq('id', id);
+
+      if (error) throw error;
+
+      await fetchProducts();
+      toast.success("Product deleted successfully!");
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      toast.error('Failed to delete product');
+    }
   };
 
   const openEditModal = (product: Product) => {
     setEditingProduct(product);
     setFormData({
       name: product.name,
-      category: product.category,
+      category_id: product.category_id || "",
       price: product.price.toString(),
-      description: product.description,
-      image: product.image,
+      description: product.description || "",
+      image_url: product.image_url || "",
       stock: product.stock.toString(),
       status: product.status
     });
@@ -222,13 +233,13 @@ const ProductManagement = () => {
       
       <div className="grid gap-2">
         <Label htmlFor="category">Category</Label>
-        <Select value={formData.category} onValueChange={(value) => setFormData({...formData, category: value})}>
+        <Select value={formData.category_id} onValueChange={(value) => setFormData({...formData, category_id: value})}>
           <SelectTrigger>
             <SelectValue placeholder="Select category" />
           </SelectTrigger>
           <SelectContent>
             {categories.map((category) => (
-              <SelectItem key={category} value={category}>{category}</SelectItem>
+              <SelectItem key={category.id} value={category.id}>{category.name}</SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -262,8 +273,8 @@ const ProductManagement = () => {
         <Label htmlFor="image">Image URL</Label>
         <Input
           id="image"
-          value={formData.image}
-          onChange={(e) => setFormData({...formData, image: e.target.value})}
+          value={formData.image_url}
+          onChange={(e) => setFormData({...formData, image_url: e.target.value})}
           placeholder="https://example.com/image.jpg"
         />
       </div>
@@ -299,6 +310,16 @@ const ProductManagement = () => {
       </Button>
     </div>
   );
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center p-8">
+        <div className="text-center">
+          <div className="text-lg font-medium">Loading products...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -357,7 +378,7 @@ const ProductManagement = () => {
                 <SelectContent>
                   <SelectItem value="all">All Categories</SelectItem>
                   {categories.map((category) => (
-                    <SelectItem key={category} value={category}>{category}</SelectItem>
+                    <SelectItem key={category.id} value={category.id}>{category.name}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -392,7 +413,7 @@ const ProductManagement = () => {
                   <TableCell>
                     <div className="flex items-center gap-3">
                       <img 
-                        src={product.image} 
+                        src={product.image_url || '/coming-soon.svg'} 
                         alt={product.name}
                         className="w-10 h-10 object-cover rounded"
                       />
@@ -405,7 +426,7 @@ const ProductManagement = () => {
                     </div>
                   </TableCell>
                   <TableCell>
-                    <Badge variant="outline">{product.category}</Badge>
+                    <Badge variant="outline">{product.category_name}</Badge>
                   </TableCell>
                   <TableCell>₹{product.price}</TableCell>
                   <TableCell>

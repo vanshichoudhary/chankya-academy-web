@@ -1,59 +1,90 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { Eye, Edit, Mail, Phone } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+
+interface Customer {
+  id: string;
+  name: string;
+  email: string;
+  phone: string | null;
+  grade: string | null;
+  status: string;
+  created_at: string;
+  orders?: Array<{
+    id: string;
+    total: number;
+  }>;
+}
 
 const CustomerManagement = () => {
-  const [customers] = useState([
-    {
-      id: "CUST-001",
-      name: "Rahul Sharma",
-      email: "rahul.sharma@email.com",
-      phone: "+91 98765 43210",
-      grade: "Grade 8",
-      totalOrders: 5,
-      totalSpent: 8950,
-      status: "active",
-      joinDate: "2023-08-15"
-    },
-    {
-      id: "CUST-002",
-      name: "Priya Singh",
-      email: "priya.singh@email.com",
-      phone: "+91 87654 32109",
-      grade: "Grade 5",
-      totalOrders: 3,
-      totalSpent: 4200,
-      status: "active",
-      joinDate: "2023-09-22"
-    },
-    {
-      id: "CUST-003",
-      name: "Amit Kumar",
-      email: "amit.kumar@email.com",
-      phone: "+91 76543 21098",
-      grade: "Grade 10",
-      totalOrders: 8,
-      totalSpent: 12400,
-      status: "active",
-      joinDate: "2023-07-10"
-    },
-    {
-      id: "CUST-004",
-      name: "Sneha Patel",
-      email: "sneha.patel@email.com",
-      phone: "+91 65432 10987",
-      grade: "Grade 3",
-      totalOrders: 2,
-      totalSpent: 1850,
-      status: "active",
-      joinDate: "2024-01-05"
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [filteredCustomers, setFilteredCustomers] = useState<Customer[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  const fetchCustomers = async () => {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('customers')
+        .select(`
+          *,
+          orders(id, total)
+        `)
+        .order('created_at', { ascending: false });
+      
+      if (error) throw error;
+      setCustomers(data || []);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+      toast.error('Failed to fetch customers');
+    } finally {
+      setLoading(false);
     }
-  ]);
+  };
+
+  useEffect(() => {
+    fetchCustomers();
+  }, []);
+
+  useEffect(() => {
+    if (searchTerm) {
+      const filtered = customers.filter(customer =>
+        customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (customer.phone && customer.phone.includes(searchTerm))
+      );
+      setFilteredCustomers(filtered);
+    } else {
+      setFilteredCustomers(customers);
+    }
+  }, [customers, searchTerm]);
+
+  const getTotalSpent = (customer: Customer) => {
+    if (!customer.orders) return 0;
+    return customer.orders.reduce((sum, order) => sum + Number(order.total), 0);
+  };
+
+  const getOrderCount = (customer: Customer) => {
+    return customer.orders?.length || 0;
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center p-8">
+        <div className="text-center">
+          <div className="text-lg font-medium">Loading customers...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -71,7 +102,7 @@ const CustomerManagement = () => {
             <CardTitle className="text-sm font-medium">Total Customers</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">156</div>
+            <div className="text-2xl font-bold">{customers.length}</div>
             <p className="text-xs text-gray-500">All registered</p>
           </CardContent>
         </Card>
@@ -81,28 +112,34 @@ const CustomerManagement = () => {
             <CardTitle className="text-sm font-medium">Active Customers</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-600">142</div>
-            <p className="text-xs text-gray-500">Recently active</p>
+            <div className="text-2xl font-bold text-green-600">
+              {customers.filter(c => c.status === 'active').length}
+            </div>
+            <p className="text-xs text-gray-500">Currently active</p>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">New This Month</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-600">12</div>
-            <p className="text-xs text-gray-500">January 2024</p>
+            <div className="text-2xl font-bold text-blue-600">
+              {customers.reduce((sum, customer) => sum + getOrderCount(customer), 0)}
+            </div>
+            <p className="text-xs text-gray-500">From all customers</p>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Average Spent</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-purple-600">₹6,850</div>
-            <p className="text-xs text-gray-500">Per customer</p>
+            <div className="text-2xl font-bold text-purple-600">
+              ₹{customers.reduce((sum, customer) => sum + getTotalSpent(customer), 0).toLocaleString()}
+            </div>
+            <p className="text-xs text-gray-500">From all customers</p>
           </CardContent>
         </Card>
       </div>
@@ -113,7 +150,12 @@ const CustomerManagement = () => {
           <CardTitle>Search Customers</CardTitle>
         </CardHeader>
         <CardContent>
-          <Input placeholder="Search by name, email, or phone..." className="max-w-md" />
+          <Input 
+            placeholder="Search by name, email, or phone..." 
+            className="max-w-md"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </CardContent>
       </Card>
 
@@ -138,13 +180,17 @@ const CustomerManagement = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {customers.map((customer) => (
+              {filteredCustomers.map((customer) => (
                 <TableRow key={customer.id}>
-                  <TableCell className="font-medium">{customer.id}</TableCell>
+                  <TableCell className="font-medium">
+                    {customer.id.substring(0, 8)}...
+                  </TableCell>
                   <TableCell>
                     <div>
                       <div className="font-medium">{customer.name}</div>
-                      <div className="text-sm text-gray-500">Joined {customer.joinDate}</div>
+                      <div className="text-sm text-gray-500">
+                        Joined {new Date(customer.created_at).toLocaleDateString()}
+                      </div>
                     </div>
                   </TableCell>
                   <TableCell>
@@ -153,19 +199,25 @@ const CustomerManagement = () => {
                         <Mail size={12} />
                         {customer.email}
                       </div>
-                      <div className="flex items-center gap-2 text-sm">
-                        <Phone size={12} />
-                        {customer.phone}
-                      </div>
+                      {customer.phone && (
+                        <div className="flex items-center gap-2 text-sm">
+                          <Phone size={12} />
+                          {customer.phone}
+                        </div>
+                      )}
                     </div>
                   </TableCell>
                   <TableCell>
-                    <Badge variant="outline">{customer.grade}</Badge>
+                    {customer.grade ? (
+                      <Badge variant="outline">{customer.grade}</Badge>
+                    ) : (
+                      <span className="text-gray-400">Not specified</span>
+                    )}
                   </TableCell>
-                  <TableCell>{customer.totalOrders}</TableCell>
-                  <TableCell>₹{customer.totalSpent}</TableCell>
+                  <TableCell>{getOrderCount(customer)}</TableCell>
+                  <TableCell>₹{getTotalSpent(customer).toLocaleString()}</TableCell>
                   <TableCell>
-                    <Badge className="bg-green-100 text-green-800">
+                    <Badge className={customer.status === 'active' ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"}>
                       {customer.status}
                     </Badge>
                   </TableCell>
@@ -181,6 +233,13 @@ const CustomerManagement = () => {
                   </TableCell>
                 </TableRow>
               ))}
+              {filteredCustomers.length === 0 && (
+                <TableRow>
+                  <TableCell colSpan={8} className="text-center py-8 text-gray-500">
+                    No customers found
+                  </TableCell>
+                </TableRow>
+              )}
             </TableBody>
           </Table>
         </CardContent>
