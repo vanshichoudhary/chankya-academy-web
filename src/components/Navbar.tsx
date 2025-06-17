@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Mail, MapPin, Globe, Users } from "lucide-react";
+import { Menu, X, Phone, Mail, MapPin, Globe, Users, Shield } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,7 +30,8 @@ const Navbar = () => {
     { name: "Establishments", path: "/establishments" },
     { name: "Gallery", path: "/gallery" },
     { name: "Store", path: "/store" },
-    { name: "We Invite", path: "/we-invite", highlight: true }
+    { name: "We Invite", path: "/we-invite", highlight: true },
+    { name: "Admin", path: "/admin", icon: Shield, admin: true }
   ];
 
   return (
@@ -81,13 +82,16 @@ const Navbar = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
                     location.pathname === link.path
                       ? "text-school-green border-b-2 border-school-green"
                       : "text-gray-600 hover:text-school-green"
-                  } ${link.highlight ? "flex items-center gap-1 bg-school-beige px-4 rounded-full ml-2" : ""}`}
+                  } ${link.highlight ? "bg-school-beige px-4 rounded-full ml-2" : ""} ${
+                    link.admin ? "bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-700 ml-2" : ""
+                  }`}
                 >
                   {link.name === "We Invite" && <Globe size={16} />}
+                  {link.admin && <Shield size={16} />}
                   {link.name}
                 </Link>
               ))}
@@ -128,14 +132,17 @@ const Navbar = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`block px-3 py-2 rounded-md text-base font-medium ${
+                  className={`block px-3 py-2 rounded-md text-base font-medium flex items-center gap-2 ${
                     location.pathname === link.path
                       ? "text-school-green bg-school-beige"
                       : "text-gray-600 hover:text-school-green hover:bg-gray-50"
-                  } ${link.highlight ? "flex items-center gap-1" : ""}`}
+                  } ${link.highlight ? "flex items-center gap-1" : ""} ${
+                    link.admin ? "bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-700" : ""
+                  }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name === "We Invite" && <Globe size={16} />}
+                  {link.admin && <Shield size={16} />}
                   {link.name}
                 </Link>
               ))}
