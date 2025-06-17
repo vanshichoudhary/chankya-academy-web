@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -52,6 +53,38 @@ const ProductManagement = () => {
     status: "active"
   });
 
+  // Initialize categories
+  const initializeCategories = async () => {
+    try {
+      // First check if categories exist
+      const { data: existingCategories } = await supabase
+        .from('categories')
+        .select('*');
+
+      if (!existingCategories || existingCategories.length === 0) {
+        // Create the two required categories
+        const { error } = await supabase
+          .from('categories')
+          .insert([
+            { name: 'Physical Store', description: 'Physical products like uniforms, books, supplies' },
+            { name: 'Digital Store', description: 'Digital resources and downloadable content' }
+          ]);
+
+        if (error) {
+          console.error('Error creating categories:', error);
+          toast.error('Failed to initialize categories');
+        } else {
+          toast.success('Categories initialized successfully');
+        }
+      }
+      
+      fetchCategories();
+    } catch (error) {
+      console.error('Error initializing categories:', error);
+      toast.error('Failed to initialize categories');
+    }
+  };
+
   // Fetch categories
   const fetchCategories = async () => {
     try {
@@ -85,7 +118,7 @@ const ProductManagement = () => {
       const productsWithCategory = (data || []).map(product => ({
         ...product,
         category_name: product.categories?.name || 'No Category',
-        status: product.status as 'active' | 'inactive' // Type assertion to fix the type issue
+        status: product.status as 'active' | 'inactive'
       }));
       
       setProducts(productsWithCategory);
@@ -98,9 +131,12 @@ const ProductManagement = () => {
   };
 
   useEffect(() => {
-    fetchCategories();
-    fetchProducts();
+    initializeCategories();
   }, []);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [categories]);
 
   // Filter products based on search and category
   useEffect(() => {
@@ -228,12 +264,13 @@ const ProductManagement = () => {
           value={formData.name}
           onChange={(e) => setFormData({...formData, name: e.target.value})}
           placeholder="Enter product name"
+          required
         />
       </div>
       
       <div className="grid gap-2">
         <Label htmlFor="category">Category</Label>
-        <Select value={formData.category_id} onValueChange={(value) => setFormData({...formData, category_id: value})}>
+        <Select value={formData.category_id} onValueChange={(value) => setFormData({...formData, category_id: value})} required>
           <SelectTrigger>
             <SelectValue placeholder="Select category" />
           </SelectTrigger>
@@ -254,6 +291,9 @@ const ProductManagement = () => {
             value={formData.price}
             onChange={(e) => setFormData({...formData, price: e.target.value})}
             placeholder="0"
+            required
+            min="0"
+            step="0.01"
           />
         </div>
         
@@ -265,6 +305,8 @@ const ProductManagement = () => {
             value={formData.stock}
             onChange={(e) => setFormData({...formData, stock: e.target.value})}
             placeholder="0"
+            required
+            min="0"
           />
         </div>
       </div>
@@ -275,7 +317,7 @@ const ProductManagement = () => {
           id="image"
           value={formData.image_url}
           onChange={(e) => setFormData({...formData, image_url: e.target.value})}
-          placeholder="https://example.com/image.jpg"
+          placeholder="https://example.com/image.jpg or leave empty for default"
         />
       </div>
 
@@ -305,6 +347,7 @@ const ProductManagement = () => {
       <Button 
         onClick={isEdit ? handleEditProduct : handleAddProduct}
         className="bg-school-green hover:bg-school-brown"
+        disabled={!formData.name || !formData.category_id || !formData.price || !formData.stock}
       >
         {isEdit ? "Update Product" : "Add Product"}
       </Button>
@@ -326,7 +369,7 @@ const ProductManagement = () => {
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-2xl font-bold text-school-green">Product Management</h2>
-          <p className="text-gray-600">Manage your store products</p>
+          <p className="text-gray-600">Manage your store products (Physical & Digital)</p>
         </div>
         
         <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
@@ -340,7 +383,7 @@ const ProductManagement = () => {
             <DialogHeader>
               <DialogTitle>Add New Product</DialogTitle>
               <DialogDescription>
-                Add a new product to your store inventory
+                Add a new product to your store (Physical or Digital)
               </DialogDescription>
             </DialogHeader>
             <ProductForm />
@@ -392,7 +435,7 @@ const ProductManagement = () => {
         <CardHeader>
           <CardTitle>Products ({filteredProducts.length})</CardTitle>
           <CardDescription>
-            Manage your product inventory
+            Manage your product inventory for both Physical and Digital stores
           </CardDescription>
         </CardHeader>
         <CardContent>

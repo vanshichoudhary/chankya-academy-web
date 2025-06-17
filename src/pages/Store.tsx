@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PageHeader from "@/components/PageHeader";
 import SectionTitle from "@/components/SectionTitle";
@@ -10,139 +11,72 @@ import { Badge } from "@/components/ui/badge";
 import { Download, ShoppingCart, Book, Shirt, BookOpen, FileText, ShoppingBag, Laptop, IndianRupee, CreditCard, AlertCircle } from "lucide-react";
 import { openWhatsApp } from "@/utils/whatsApp";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+
+interface Product {
+  id: string;
+  name: string;
+  category_id: string;
+  price: number;
+  description: string | null;
+  image_url: string | null;
+  stock: number;
+  status: 'active' | 'inactive';
+  categories?: {
+    name: string;
+  };
+}
 
 const Store = () => {
   const [cartItems, setCartItems] = useState(0);
+  const [physicalProducts, setPhysicalProducts] = useState<Product[]>([]);
+  const [digitalProducts, setDigitalProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const addToCart = (product) => {
+  // Fetch products from Supabase
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('products')
+        .select(`
+          *,
+          categories(name)
+        `)
+        .eq('status', 'active')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      const products = data || [];
+      
+      // Separate products by category
+      const physical = products.filter(product => 
+        product.categories?.name === 'Physical Store'
+      );
+      const digital = products.filter(product => 
+        product.categories?.name === 'Digital Store'
+      );
+
+      setPhysicalProducts(physical);
+      setDigitalProducts(digital);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      toast.error('Failed to load products');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const addToCart = (product: Product) => {
     openWhatsApp(product.name, product.price);
     toast.success("Opening WhatsApp to place your order");
   };
-
-  const physicalProducts = [
-    {
-      id: 1,
-      name: "School Uniform (Summer)",
-      category: "Uniforms",
-      price: 1200,    
-      image: "/coming-soon.svg",
-      description: "Official summer uniform for all students including shirt, pants/skirt, and tie."
-    },
-    {
-      id: 2,
-      name: "School Uniform (Winter)",
-      category: "Uniforms",
-      price: 1800,    
-      image: "/coming-soon.svg",
-      description: "Official winter uniform including sweater, jacket, and full sleeves shirt."
-    },
-    {
-      id: 3,
-      name: "Sports Kit",
-      category: "Uniforms",
-      price: 950,    
-      image: "/coming-soon.svg",
-      description: "Sports uniform including track suit, t-shirt, and shorts for physical education classes."
-    },
-    {
-      id: 4,
-      name: "School Bag",
-      category: "Accessories",
-      price: 850,    
-      image: "/coming-soon.svg",
-      description: "Durable and ergonomic school bag with the school logo and multiple compartments."
-    },
-    {
-      id: 5,
-      name: "Textbook Set - Grade 1",
-      category: "Books",
-      price: 1500,    
-      image: "/coming-soon.svg",
-      description: "Complete set of textbooks for Grade 1 students as per the curriculum."
-    },
-    {
-      id: 6,
-      name: "Textbook Set - Grade 2",
-      category: "Books",
-      price: 1600,    
-      image: "/coming-soon.svg",
-      description: "Complete set of textbooks for Grade 2 students as per the curriculum."
-    },
-    {
-      id: 7,
-      name: "School Shoes",
-      category: "Accessories",
-      price: 750,
-      image: "/coming-soon.svg",
-      description: "Black school shoes that comply with the uniform requirements."
-    },
-    {
-      id: 8,
-      name: "Stationery Kit",
-      category: "Accessories",
-      price: 450,    
-      image: "/coming-soon.svg",
-      description: "Essential stationery items including notebooks, pens, pencils, and geometry box."
-    }
-  ];
-
-  const digitalResources = [
-    {
-      id: 1,
-      name: "Mathematics Study Materials",
-      grade: "Grades 6-8",
-      fileType: "PDF",
-      fileSize: "15 MB",
-      image: "https://i.ibb.co/R1rq4VG/unnamed-9.png",
-      description: "Comprehensive study materials for mathematics covering all topics in the curriculum with practice problems and solutions."
-    },
-    {
-      id: 2,
-      name: "Science Laboratory Manual",
-      grade: "Grades 9-10",
-      fileType: "PDF",
-      fileSize: "20 MB",
-      image: "/placeholder.svg",
-      description: "Detailed laboratory manual with instructions for science experiments, observations, and analysis."
-    },
-    {
-      id: 3,
-      name: "English Literature Notes",
-      grade: "Grades 11-12",
-      fileType: "PDF",
-      fileSize: "12 MB",
-      image: "/placeholder.svg",
-      description: "Notes for English literature including character analysis, themes, and critical appreciation of texts in the syllabus."
-    },
-    {
-      id: 4,
-      name: "History Study Guide",
-      grade: "Grades 8-10",
-      fileType: "PDF",
-      fileSize: "18 MB",
-      image: "/placeholder.svg",
-      description: "Comprehensive study guide for history with timelines, key events, figures, and practice questions."
-    },
-    {
-      id: 5,
-      name: "Computer Science Programming Resources",
-      grade: "Grades 9-12",
-      fileType: "ZIP",
-      fileSize: "25 MB",
-      image: "/placeholder.svg",
-      description: "Programming resources, code examples, and practice exercises for computer science students."
-    },
-    {
-      id: 6,
-      name: "Geography Maps & Workbook",
-      grade: "Grades 6-8",
-      fileType: "PDF",
-      fileSize: "22 MB",
-      image: "/placeholder.svg",
-      description: "Geography workbook with maps, diagrams, and exercises for practice and revision."
-    }
-  ];
 
   // Fee payment options
   const feePayments = [
@@ -180,11 +114,32 @@ const Store = () => {
     }
   ];
 
-  const handlePayment = (feeType) => {
+  const handlePayment = (feeType: string) => {
     toast.info(`Opening payment gateway for ${feeType}`);
-    // In a real implementation, this would redirect to a payment gateway
     navigate("/payment", { state: { feeType } });
   };
+
+  const handleDownload = (product: Product) => {
+    toast.success(`Downloading ${product.name}`);
+    // In a real implementation, this would trigger the actual download
+  };
+
+  if (loading) {
+    return (
+      <div>
+        <PageHeader 
+          title="School Store" 
+          subtitle="Purchase uniforms, books, pay fees, and access free digital resources" 
+          background="https://i.ibb.co/y2ZnvYL/Whats-App-Image-2025-04-20-at-19-24-50-89ab4c50.jpg"
+        />
+        <div className="container mx-auto px-4 py-16">
+          <div className="text-center">
+            <div className="text-lg font-medium">Loading store products...</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -234,44 +189,56 @@ const Store = () => {
                 />
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {physicalProducts.map((product) => (
-                  <Card key={product.id} className="overflow-hidden">
-                    <div className="h-48 overflow-hidden">
-                      <img 
-                        src={product.image} 
-                        alt={product.name} 
-                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                      />
-                    </div>
-                    <CardHeader className="p-4 pb-0">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <CardTitle className="text-lg">{product.name}</CardTitle>
-                          <CardDescription>
-                            <Badge variant="outline" className="mt-1">
-                              {product.category}
-                            </Badge>
-                          </CardDescription>
-                        </div>
-                        <span className="font-bold text-school-green">₹{product.price}</span>
+              {physicalProducts.length === 0 ? (
+                <div className="text-center py-12">
+                  <ShoppingBag size={64} className="mx-auto text-gray-400 mb-4" />
+                  <h3 className="text-xl font-medium text-gray-600 mb-2">No Physical Products Available</h3>
+                  <p className="text-gray-500">Physical products will appear here when added by the admin.</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {physicalProducts.map((product) => (
+                    <Card key={product.id} className="overflow-hidden">
+                      <div className="h-48 overflow-hidden">
+                        <img 
+                          src={product.image_url || '/coming-soon.svg'} 
+                          alt={product.name} 
+                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                        />
                       </div>
-                    </CardHeader>
-                    <CardContent className="p-4 pt-2">
-                      <p className="text-gray-600 text-sm line-clamp-2">{product.description}</p>
-                    </CardContent>
-                    <CardFooter className="p-4 pt-0">
-                      <Button 
-                        className="w-full bg-green-500 hover:bg-green-600 text-white"
-                        onClick={() => addToCart(product)}
-                      >
-                        <ShoppingCart size={16} className="mr-2" />
-                        Order via WhatsApp
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                ))}
-              </div>
+                      <CardHeader className="p-4 pb-0">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <CardTitle className="text-lg">{product.name}</CardTitle>
+                            <CardDescription>
+                              <Badge variant="outline" className="mt-1">
+                                Physical Store
+                              </Badge>
+                            </CardDescription>
+                          </div>
+                          <span className="font-bold text-school-green">₹{product.price}</span>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="p-4 pt-2">
+                        <p className="text-gray-600 text-sm line-clamp-2">{product.description}</p>
+                        <div className="text-sm text-gray-500 mt-2">
+                          Stock: {product.stock}
+                        </div>
+                      </CardContent>
+                      <CardFooter className="p-4 pt-0">
+                        <Button 
+                          className="w-full bg-green-500 hover:bg-green-600 text-white"
+                          onClick={() => addToCart(product)}
+                          disabled={product.stock === 0}
+                        >
+                          <ShoppingCart size={16} className="mr-2" />
+                          {product.stock === 0 ? 'Out of Stock' : 'Order via WhatsApp'}
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
+              )}
               
               <div className="mt-12 text-center">
                 <p className="text-gray-600 mb-4">Looking for something specific? Contact us directly on WhatsApp for custom orders.</p>
@@ -281,57 +248,74 @@ const Store = () => {
               </div>
             </TabsContent>
             
-            {/* Digital Resources - Keep this section mostly the same */}
+            {/* Digital Resources */}
             <TabsContent value="digital">
               <SectionTitle 
                 title="Digital Resources" 
                 subtitle="Free downloadable materials to support student learning"
               />
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {digitalResources.map((resource) => (
-                  <Card key={resource.id} className="overflow-hidden">
-                     <div className="h-40 overflow-hidden bg-gray-100 flex items-center justify-center">
-                        {resource.image ? (
-                          <img src={resource.image} alt={resource.name} className="w-full h-full object-cover" />
+              {digitalProducts.length === 0 ? (
+                <div className="text-center py-12">
+                  <Laptop size={64} className="mx-auto text-gray-400 mb-4" />
+                  <h3 className="text-xl font-medium text-gray-600 mb-2">No Digital Resources Available</h3>
+                  <p className="text-gray-500">Digital resources will appear here when added by the admin.</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {digitalProducts.map((product) => (
+                    <Card key={product.id} className="overflow-hidden">
+                      <div className="h-40 overflow-hidden bg-gray-100 flex items-center justify-center">
+                        {product.image_url ? (
+                          <img src={product.image_url} alt={product.name} className="w-full h-full object-cover" />
                         ) : (
-                          resource.fileType === "PDF" ? (
-                            <FileText size={60} className="text-gray-400" />
-                          ) : (
-                            <Book size={60} className="text-gray-400" />
-                          )
+                          <FileText size={60} className="text-gray-400" />
                         )}
                       </div>
-                    <CardHeader className="p-4 pb-0">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <CardTitle className="text-lg">{resource.name}</CardTitle>
-                          <CardDescription className="flex flex-col items-start">
-                            <Badge variant="outline" className="mt-1">
-                              {resource.grade}
-                            </Badge>
-                            <span className="text-xs mt-1">
-                              {resource.fileType} • {resource.fileSize}
-                            </span>
-                          </CardDescription>
+                      <CardHeader className="p-4 pb-0">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <CardTitle className="text-lg">{product.name}</CardTitle>
+                            <CardDescription className="flex flex-col items-start">
+                              <Badge variant="outline" className="mt-1">
+                                Digital Store
+                              </Badge>
+                              {product.price > 0 && (
+                                <span className="text-sm mt-1 font-bold text-school-green">
+                                  ₹{product.price}
+                                </span>
+                              )}
+                            </CardDescription>
+                          </div>
                         </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="p-4 pt-2">
-                      <p className="text-gray-600 text-sm line-clamp-2">{resource.description}</p>
-                    </CardContent>
-                    <CardFooter className="p-4 pt-0">
-                      <Button 
-                        variant="outline"
-                        className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white"
-                      >
-                        <Download size={16} className="mr-2" />
-                        Download
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                ))}
-              </div>
+                      </CardHeader>
+                      <CardContent className="p-4 pt-2">
+                        <p className="text-gray-600 text-sm line-clamp-2">{product.description}</p>
+                      </CardContent>
+                      <CardFooter className="p-4 pt-0">
+                        {product.price > 0 ? (
+                          <Button 
+                            className="w-full bg-green-500 hover:bg-green-600 text-white"
+                            onClick={() => addToCart(product)}
+                          >
+                            <ShoppingCart size={16} className="mr-2" />
+                            Purchase via WhatsApp
+                          </Button>
+                        ) : (
+                          <Button 
+                            variant="outline"
+                            className="w-full border-school-green text-school-green hover:bg-school-green hover:text-white"
+                            onClick={() => handleDownload(product)}
+                          >
+                            <Download size={16} className="mr-2" />
+                            Download Free
+                          </Button>
+                        )}
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
+              )}
               
               <div className="bg-school-beige p-6 rounded-lg shadow-md mt-12">
                 <div className="flex flex-col md:flex-row gap-6 items-center">
@@ -351,7 +335,7 @@ const Store = () => {
               </div>
             </TabsContent>
             
-            {/* New Fee Payments Tab */}
+            {/* Fee Payments Tab */}
             <TabsContent value="payments">
               <SectionTitle 
                 title="Fee Payments" 
@@ -523,7 +507,7 @@ const Store = () => {
                 </li>
               </ul>
               <div className="mt-6 pt-6 border-t border-gray-200">
-                <p className="text-text-gray-600 text-sm">
+                <p className="text-gray-600 text-sm">
                   For inquiries about orders or delivery, please contact:
                   <br />
                   <span className="font-medium">store@chankyaacademy.edu</span>
